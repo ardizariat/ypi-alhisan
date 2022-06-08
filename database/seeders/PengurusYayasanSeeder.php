@@ -10,9 +10,6 @@ class PengurusYayasanSeeder extends Seeder
 {
     public function run()
     {
-
-        $faker = Faker::create('id_ID');
-
         $users = [
             ['KH. Abdul Aziz Ridwa, Lc', 'abdul_aziz', 'abdul_aziz@mail.com', 1],
             ['H. Ahmad Zainudin, S.Sos, MA', 'ahmad_zainudin', 'ahmad_zainudin@mail.com', 1],
@@ -47,7 +44,6 @@ class PengurusYayasanSeeder extends Seeder
         ];
 
         foreach ($bagian as $item) {
-
             $bagian = DB::table('bagian')->insertGetId([
                 'nama' => $item[0],
                 'status' => 'aktif',
