@@ -91,9 +91,8 @@ function activeClassFrontend($url)
 
 function prefixAPI()
 {
-    if (env('APP_ENV') === 'production') {
+    if (env('APP_ENV') != 'local') {
         return 'https://ypi-alhisan.herokuapp.com/api';
-    } else {
-        return 'http://alhisan.test/api';
     }
+    return 'http://alhisan.test/api';
 }

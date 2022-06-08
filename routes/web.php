@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Application\{
     AppController,
 };
@@ -18,9 +17,6 @@ Route::controller(AppController::class)->group(function () {
     Route::get('/artikel/{artikel:slug}', 'artikelDetail')->name('artikel-detail');
 });
 
-Route::middleware('auth:sanctum')->prefix('dashboard')->name('dashboard.')->controller(DashboardController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-});
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
