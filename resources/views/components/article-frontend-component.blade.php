@@ -10,14 +10,8 @@
 
     <div class="entry-meta">
         <ul>
-            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                    href="{{ $urlDetail }}">{{ $penulis ?? '' }}</a>
-            </li>
-            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                    href="{{ $urlDetail }}">{{ $tanggal }}</a>
-            </li>
-            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                    href="{{ $urlDetail }}">{{ $komentar ?? '' }}</a></li>
+            {{ $penulis ?? '' }}
+            {{ $tanggal ?? '' }}
         </ul>
     </div>
 

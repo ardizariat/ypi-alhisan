@@ -26,7 +26,7 @@ class ArtikelSeeder extends Seeder
                 'slug' => Str::slug($faker->sentence(3)),
                 'judul' => $i . Str::title($faker->sentence()),
                 'konten' => $faker->paragraph(50),
-                'dipublikasi' => now()->toDateTimeString(),
+                'dipublikasi' => now()->toDateString(),
                 'status' => 'dipublikasi',
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString(),

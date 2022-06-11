@@ -19,21 +19,7 @@ class AppController extends Controller
 
     public function beranda(Request $request)
     {
-        // Get artikel
-        $resArtikel['data'] = $this->artikelRepository
-            ->artikel()
-            ->paginate(3);
-
-        // Get kategori
-        $reqKategori = Http::get(prefixAPI() . '/artikel/kategori');
-        $ok = $reqKategori->ok();
-        if (!$ok) return $data['kategori'] = null;
-        $resKategori = $reqKategori->json();
-
-        $data['artikel'] = $resArtikel['data'];
-        $data['kategori'] = $resKategori['data'];
-
-        return view('frontend.beranda', compact('data'));
+        return view('frontend.beranda');
     }
 
     public function kontak()
@@ -75,21 +61,18 @@ class AppController extends Controller
 
     public function artikel(Request $request)
     {
+        $perPage = 5;
         $data['title'] = 'Artikel';
 
         // Get artikel
-        $resArtikel['data'] = $this->artikelRepository
+        $data['artikel'] = $this->artikelRepository
             ->artikel()
-            ->paginate(3);
+            ->paginate($perPage);
 
         // Get kategori
-        $reqKategori = Http::get(prefixAPI() . '/artikel/kategori');
-        $ok = $reqKategori->ok();
-        if (!$ok) return $data['kategori'] = null;
-        $resKategori = $reqKategori->json();
+        $data['kategori'] = $this->artikelRepository->kategoriArtikel();
 
-        $data['artikel'] = $resArtikel['data'];
-        $data['kategori'] = $resKategori['data'];
+
         return view('frontend.artikel', compact('data'));
     }
 

@@ -1928,3 +1928,16 @@ section {
     color: #fff;
     text-decoration: none;
 }
+
+.btn-link {
+    background: #1bbd36;
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+.btn-link:hover {
+    background: #2ae149;
+    color: #fff;
+}

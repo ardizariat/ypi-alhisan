@@ -22,7 +22,7 @@ return new class extends Migration
             $table->longText('konten');
             $table->string('thumbnail')->nullable();
             $table->integer('dilihat')->nullable()->default(0);
-            $table->dateTime('dipublikasi')->nullable();
+            $table->date('dipublikasi')->nullable();
             $table->string('status')->nullable()->default('draft');
             $table->timestamps();
 

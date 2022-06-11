@@ -12,42 +12,47 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="row">
-
-                    <div class="col-lg-8 entries">
-                        @foreach ($data['artikel']['data'] as $item)
+                    <div class="col-lg-8 col-md-12 col-sm-12 entries">
+                        @foreach ($data['artikel'] as $item)
                             <x-article-frontend-component>
-                                <x-slot name="judul">{!! $item['judul'] !!}</x-slot>
-                                <x-slot name="penulis">{!! $item['kategori'] !!}</x-slot>
-                                <x-slot name="tanggal">{!! tanggalJam($item['dipublikasi']) !!}</x-slot>
-                                <x-slot name="konten">
-                                    {!! Str::limit($item['konten'], 150, ' . . .') !!}
+                                <x-slot name="urlImage">{{ asset('application/img/blog/blog-1.jpg') }}</x-slot>
+                                <x-slot name="judul">{!! Str::limit($item->judul, 30, '.') !!}</x-slot>
+                                <x-slot name="penulis">
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-person"></i>
+                                        <a
+                                            href="{{ route('artikel-detail', $item->slug) }}">{{ $item->penulis }}</a>
+                                    </li>
                                 </x-slot>
-                                <x-slot name="urlDetail">{{ route('artikel-detail', $item['slug']) }}</x-slot>
+                                <x-slot name="tanggal">
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-clock"></i>
+                                        <a
+                                            href="{{ route('artikel-detail', $item->slug) }}">{!! tanggal($item->dipublikasi) !!}</a>
+                                    </li>
+                                </x-slot>
+                                <x-slot name="konten">
+                                    {!! Str::limit($item->konten, 50, '.') !!}
+                                </x-slot>
+                                <x-slot name="urlDetail">{{ route('artikel-detail', $item->slug) }}</x-slot>
                             </x-article-frontend-component>
                         @endforeach
 
-                        <div class="blog-pagination">
+                        <div class="blog-pagination mb-3">
                             <ul class="justify-content-center">
-                                @foreach ($data['artikel']['links'] as $link)
-                                    <li><a href="{{ $link['url'] }}">{{ $link['label'] }}</a></li>
-                                @endforeach
-                                {{-- <li><a href="#">1</a></li>
+                                <li><a href="#">1</a></li>
                                 <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li> --}}
+                                <li><a href="#">3</a></li>
                             </ul>
                         </div>
-
                     </div>
 
-                    <div class="col-lg-4">
-
+                    <div class="col-lg-4 col-md-12 col-sm-12 entries">
                         <div class="sidebar">
-
                             <h3 class="sidebar-title">Search</h3>
-                            <div class="sidebar-item search-form">
+                            <div class="sidebar-item">
                                 <form action="">
-                                    <input type="search" name="search" autocomplete="off">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
+                                    <input type="search" class="form-control" name="search" autocomplete="off">
                                 </form>
                             </div><!-- End sidebar search formn-->
 
@@ -56,7 +61,7 @@
                                 <ul>
                                     @foreach ($data['kategori'] as $item)
                                         <li><a
-                                                href="{{ route('artikel', 'kategori=' . $item['slug'] . '') }}">{{ $item['nama'] }}<span>({{ $item['kategori_count'] }})</span></a>
+                                                href="{{ route('artikel', 'kategori=' . $item->slug . '') }}">{{ $item->nama }}<span>0</span></a>
                                         </li>
                                     @endforeach
                                 </ul>
