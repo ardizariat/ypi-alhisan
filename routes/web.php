@@ -21,4 +21,5 @@ Route::controller(AppController::class)->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'store')->name('login.store');
+    Route::delete('/logout', 'logout')->name('logout');
 });
