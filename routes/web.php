@@ -3,7 +3,6 @@
 use App\Http\Controllers\Application\{
     AppController,
 };
-use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AppController::class)->group(function () {
@@ -15,11 +14,4 @@ Route::controller(AppController::class)->group(function () {
     Route::get('/galeri', 'galeri')->name('galeri');
     Route::get('/artikel', 'artikel')->name('artikel');
     Route::get('/artikel/{artikel:slug}', 'artikelDetail')->name('artikel-detail');
-});
-
-
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'store')->name('login.store');
-    Route::delete('/logout', 'logout')->name('logout');
 });
