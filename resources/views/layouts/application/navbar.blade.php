@@ -33,7 +33,11 @@
             </div>
         @else
             <div class="header-social-links d-flex">
-                <a href="{{ route('login') }}">{{ auth()->user() }}</a>
+                <a href="{{ route('login') }}">{{ auth()->user()->name }}</a>
+                <form action="{{ route('logout') }}" method="post">
+                    @method('delete')
+                    <button type="submit">logout</button>
+                </form>
             </div>
         @endif
 

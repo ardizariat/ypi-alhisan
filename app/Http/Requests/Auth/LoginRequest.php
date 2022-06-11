@@ -58,6 +58,7 @@ class LoginRequest extends FormRequest
         RateLimiter::clear($this->throttleKey());
 
         $token =  $user->createToken('lorem')->plainTextToken;
+        $user->update(['remember_token' => $token]);
         $data = [
             'user' => $user,
             'access_token' => $token,
