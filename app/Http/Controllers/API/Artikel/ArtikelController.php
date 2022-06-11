@@ -23,12 +23,13 @@ class ArtikelController extends Controller
     {
         $params = [
             'kategori' => $request->query('kategori'),
-            'search' => $request->query('search')
+            'search' => $request->query('search'),
+            'perPage' => $request->query('per_page') ?? 5
         ];
 
         $data = $this->artikelRepository
             ->artikel($params)
-            ->paginate($this->perPage)
+            ->paginate($params['perPage'])
             ->withQueryString();
 
         return ResponseFormatter::success($data, 'Get data artikel berhasil');

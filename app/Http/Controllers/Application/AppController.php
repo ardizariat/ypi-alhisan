@@ -4,22 +4,36 @@ namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
+use App\Repositories\Interface\ArtikelInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
+    protected $artikelRepository;
+
+    public function __construct(ArtikelInterface $artikelRepository)
+    {
+        $this->artikelRepository = $artikelRepository;
+    }
+
     public function beranda(Request $request)
     {
-        $req = Http::get(prefixAPI() . '/pengurus-yayasan');
-        $ok = $req->ok();
+        // Get artikel
+        $resArtikel['data'] = $this->artikelRepository
+            ->artikel()
+            ->paginate(3);
 
-        if (!$ok) return $data['data'] = null;
+        // Get kategori
+        $reqKategori = Http::get(prefixAPI() . '/artikel/kategori');
+        $ok = $reqKategori->ok();
+        if (!$ok) return $data['kategori'] = null;
+        $resKategori = $reqKategori->json();
 
-        $res = $req->json();
-        $data['data'] = $res['data'];
+        $data['artikel'] = $resArtikel['data'];
+        $data['kategori'] = $resKategori['data'];
 
-        return view('frontend.beranda');
+        return view('frontend.beranda', compact('data'));
     }
 
     public function kontak()
@@ -64,14 +78,9 @@ class AppController extends Controller
         $data['title'] = 'Artikel';
 
         // Get artikel
-        $params = [
-            'kategori' => $request->query('kategori'),
-            'search' => $request->query('search')
-        ];
-        $reqArtikel = Http::get(prefixAPI() . "/artikel", $params);
-        $ok = $reqArtikel->ok();
-        if (!$ok) return $data['artikel'] = null;
-        $resArtikel = $reqArtikel->json();
+        $resArtikel['data'] = $this->artikelRepository
+            ->artikel()
+            ->paginate(3);
 
         // Get kategori
         $reqKategori = Http::get(prefixAPI() . '/artikel/kategori');

@@ -4,13 +4,7 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>YPI Alhisan</h3>
-                    <p>
-                        Jl. Harapan Baru Timur Blok Ga 1 No.82,<br>
-                        RT.003/RW.007, Kota Baru, <br>
-                        Bekasi Barat, Kota Bekasi,<br>
-                        Jawa Barat 17133<br>
-                    </p>
+                    <h3 class="mt-xl-5 pt-xl-3">YPI Alhisan</h3>
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
@@ -34,13 +28,19 @@
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Kontak</h4>
                     <p>
+                        Jl. Harapan Baru Timur Blok Ga 1 No.82,<br>
+                        RT.003/RW.007, Kota Baru, <br>
+                        Bekasi Barat, Kota Bekasi,<br>
+                        Jawa Barat 17133<br>
+                    </p>
+                    <p>
                         <strong>Phone:</strong> +1 5589 55488 55<br>
                         <strong>Email:</strong> info@example.com<br>
                     </p>
-                    <form action="" method="post" class="d-flex">
+                    {{-- <form action="" method="post" class="d-flex">
                         <input type="email" class="form-control" name="email">
                         <button type="submit" class="btn btn-outline-success">Subscribe</button>
-                    </form>
+                    </form> --}}
                 </div>
 
             </div>
@@ -62,11 +62,10 @@
             </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="telegram"><i class="bx bxl-telegram"></i></a>
             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
             <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
         </div>
     </div>
 </footer>

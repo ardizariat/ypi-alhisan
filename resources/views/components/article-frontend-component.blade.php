@@ -1,7 +1,7 @@
 <article class="entry">
 
     <div class="entry-img">
-        <img src="application/img/blog/blog-1.jpg" alt="blog-image" class="img-fluid">
+        <img src="{{ $urlImage ?? '' }}" alt="blog-image" class="img-fluid">
     </div>
 
     <h2 class="entry-title">
@@ -11,13 +11,13 @@
     <div class="entry-meta">
         <ul>
             <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                    href="{{ $urlDetail }}">{{ $penulis }}</a>
+                    href="{{ $urlDetail }}">{{ $penulis ?? '' }}</a>
             </li>
-            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ $urlDetail }}"><time
-                        datetime="2020-01-01">{{ $tanggal }}</time></a>
+            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
+                    href="{{ $urlDetail }}">{{ $tanggal }}</a>
             </li>
-            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ $urlDetail }}">12
-                    Comments</a></li>
+            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                    href="{{ $urlDetail }}">{{ $komentar ?? '' }}</a></li>
         </ul>
     </div>
 

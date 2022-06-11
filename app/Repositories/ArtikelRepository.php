@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class ArtikelRepository implements ArtikelInterface
 {
-    public function artikel(array $request)
+    public function artikel(array $request = [])
     {
         $artikel = DB::table('artikel as a')
             ->join('kategori as k', 'k.id', '=', 'a.kategori_id')
