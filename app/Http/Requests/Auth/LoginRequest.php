@@ -46,8 +46,16 @@ class LoginRequest extends FormRequest
             ->first();
 
         if (!$user || !Hash::check($this->password, $user->password)) {
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'login' => __('auth.failed'),
+            ]);
             return ResponseFormatter::error(null, 'Unauthorized', 401);
         }
+
+        Auth::login($user);
+        RateLimiter::clear($this->throttleKey());
 
         $token =  $user->createToken('lorem')->plainTextToken;
         $data = [
