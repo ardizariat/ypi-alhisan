@@ -64,14 +64,29 @@ class AppController extends Controller
         $perPage = 5;
         $data['title'] = 'Artikel';
 
+        if ($request->ajax()) {
+            $q = $request->get('q');
+
+            $data['artikel'] = $this->artikelRepository->artikel()
+                ->when(
+                    $q ?? false,
+                    fn ($query) =>
+                    $query->where('a.judul', 'like', '%' . $q . '%')
+                )
+                ->paginate($perPage);
+            return view('frontend.artikelFetch', compact('data'))->render();
+        }
+
         // Get artikel
         $data['artikel'] = $this->artikelRepository
             ->artikel()
             ->paginate($perPage);
 
+        $data['artikelTerbaru'] = $this->artikelRepository
+            ->artikel()->limit(5)->get();
+
         // Get kategori
         $data['kategori'] = $this->artikelRepository->kategoriArtikel();
-
 
         return view('frontend.artikel', compact('data'));
     }
@@ -80,13 +95,7 @@ class AppController extends Controller
     public function artikelDetail(Artikel $artikel)
     {
         $data['title'] = $artikel->judul;
-        $req = Http::get(prefixAPI() . "/artikel/{$artikel->slug}");
-        $ok = $req->ok();
-
-        if (!$ok) return $data['data'] = null;
-
-        $res = $req->json();
-        $data['data'] = $res['data'];
+        $data['data'] = $this->artikelRepository->artikelDetail($artikel->slug);
 
         return view('frontend.artikelDetail', compact('data'));
     }

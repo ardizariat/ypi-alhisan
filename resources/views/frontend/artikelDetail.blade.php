@@ -18,20 +18,21 @@
                         <article class="entry entry-single">
 
                             <div class="entry-img">
-                                <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                                <img src="{{ asset('application/img/blog/blog-1.jpg') }}" alt=""
+                                    class="img-fluid">
                             </div>
 
                             <h2 class="entry-title">
-                                <a href="#">{!! $data['data']['judul'] !!}</a>
+                                <a href="#">{!! $data['data']->judul !!}</a>
                             </h2>
 
                             <div class="entry-meta">
                                 <ul>
                                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="blog-single.html">{!! $data['data']['penulis'] !!}</a></li>
+                                            href="blog-single.html">{!! $data['data']->penulis !!}</a></li>
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
                                             href="blog-single.html"><time
-                                                datetime="2020-01-01">{!! tanggalJam($data['data']['dipublikasi']) !!}</time></a>
+                                                datetime="2020-01-01">{!! tanggal($data['data']->dipublikasi) !!}</time></a>
                                     </li>
                                     {{-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
                                             href="blog-single.html">12 Comments</a></li> --}}
@@ -39,13 +40,13 @@
                             </div>
 
                             <div class="entry-content">
-                                {!! $data['data']['konten'] !!}
+                                {!! $data['data']->konten !!}
                             </div>
 
                             <div class="entry-footer">
                                 <i class="bi bi-folder"></i>
                                 <ul class="cats">
-                                    <li><a href="#">{!! $data['data']['kategori'] !!}</a></li>
+                                    <li><a href="#">{!! $data['data']->kategori !!}</a></li>
                                 </ul>
 
                                 <i class="bi bi-tags"></i>

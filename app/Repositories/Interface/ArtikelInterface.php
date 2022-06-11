@@ -4,7 +4,7 @@ namespace App\Repositories\Interface;
 
 interface ArtikelInterface
 {
-    public function artikel(array $request = []);
+    public function artikel();
 
     public function artikelDetail($slug);
 

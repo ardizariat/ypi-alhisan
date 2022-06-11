@@ -1,4 +1,4 @@
-<article class="entry">
+<article class="entry" id="artikel">
 
     <div class="entry-img">
         <img src="{{ $urlImage ?? '' }}" alt="blog-image" class="img-fluid">
