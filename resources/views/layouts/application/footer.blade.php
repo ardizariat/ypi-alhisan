@@ -4,7 +4,9 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3 class="mt-xl-5 pt-xl-3">YPI Alhisan</h3>
+                    <h3 class="mt-xl-5 pt-xl-3">
+                        <a class="text-decoration-none text-white" href="{{ route('auth.login') }}">YPI Alhisan</a>
+                    </h3>
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">

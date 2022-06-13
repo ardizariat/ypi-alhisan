@@ -5,11 +5,13 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\{
     PengurusYayasanRepository,
-    ArtikelRepository
+    ArtikelRepository,
+    RapatYayasanRepository,
 };
 use App\Repositories\Interface\{
     PengurusYayasanInterface,
-    ArtikelInterface
+    ArtikelInterface,
+    RapatYayasanInterface,
 };
 
 class AdminRepositoryProvider extends ServiceProvider
@@ -24,6 +26,10 @@ class AdminRepositoryProvider extends ServiceProvider
         $this->app->bind(
             PengurusYayasanInterface::class,
             PengurusYayasanRepository::class
+        );
+        $this->app->bind(
+            RapatYayasanInterface::class,
+            RapatYayasanRepository::class
         );
         $this->app->bind(
             ArtikelInterface::class,

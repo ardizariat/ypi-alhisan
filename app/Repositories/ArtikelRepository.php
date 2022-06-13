@@ -13,7 +13,7 @@ class ArtikelRepository implements ArtikelInterface
             ->join('kategori as k', 'k.id', '=', 'a.kategori_id')
             ->join('users as u', 'u.id', '=', 'a.user_id')
             ->selectRaw('
-            a.id, u.name as penulis, a.judul, a.konten, k.nama as kategori, a.dipublikasi, a.slug
+            a.id, u.name as penulis, a.judul, a.konten, k.nama as kategori, a.dipublikasi, a.slug, a.created_at as dibuat
         ')
             ->where('a.status', 'dipublikasi')
             ->whereNotNull('a.dipublikasi')

@@ -11,9 +11,13 @@
         "php": "^8.0.2",
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
+        "haruncpi/laravel-id-generator": "^1.1",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
+        "nasution/terbilang": "^0.1.0",
+        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-backup": "^8.1",
         "spatie/laravel-permission": "^5.5"
     },

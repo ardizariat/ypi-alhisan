@@ -46,6 +46,7 @@ function rp(int $angka)
 {
     return 'Rp. ' . number_format($angka, 2, ',', '.');
 }
+
 function tanggal($tanggal)
 {
     if ($tanggal == null) {
@@ -95,4 +96,33 @@ function prefixAPI()
         return 'https://ypi-alhisan.herokuapp.com/api';
     }
     return 'http://alhisan.test/api';
+}
+
+function kode(string $table, string $field, int $panjang, string $prefix, bool $auto_reset = true)
+{
+    $config = [
+        'table' => $table,
+        'field' => $field,
+        'length' => $panjang,
+        'prefix' => $prefix,
+        'reset_on_prefix_change' => $auto_reset
+    ];
+    return IdGenerator::generate($config);
+}
+
+function terbilangRupiah($angka)
+{
+    $terbilang = new Terbilang();
+    return $terbilang->convert((int)$angka) . ' Rupiah';
+}
+
+function kodeRapatYayasan()
+{
+    $prefix = date('dmy') . '-';
+    return kode('rapat_yayasan', 'kode', '13', 'YPI-' . $prefix);
+}
+
+function tanggalJamSekarang()
+{
+    return now()->toDateTimeLocalString();
 }

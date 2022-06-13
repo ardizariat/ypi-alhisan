@@ -19,24 +19,25 @@
                     <div class="auth-logo">
                         <a href="index.html"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo"></a>
                     </div>
-                    <h1 class="auth-title">Log in</h1>
-                    <form method="POST" action="{{ route('login.store') }}">
+                    <h1 class="auth-title">Login</h1>
+                    <form method="POST" action="{{ route('auth.login.store') }}">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" name="login" class="form-control form-control-xl"
+                            <input type="text" name="login" class="form-control form-control-xl" autocomplete="off"
                                 placeholder="Username / Email">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" name="password" class="form-control form-control-xl"
-                                placeholder="Password">
+                            <input type="password" autocomplete="off" name="password"
+                                class="form-control form-control-xl" placeholder="Password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                        <button type="submit" class="btn btn-outline-primary btn-block btn-lg shadow-lg mt-5">Log
+                            in</button>
                     </form>
                 </div>
             </div>

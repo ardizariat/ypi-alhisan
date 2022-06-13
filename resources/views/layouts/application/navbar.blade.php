@@ -26,21 +26,6 @@
 
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-        @if (!auth()->user())
-            <div class="header-social-links d-flex">
-                <a href="{{ route('login') }}">Login</a>
-            </div>
-        @else
-            <div class="header-social-links d-flex">
-                <a href="{{ route('login') }}">{{ auth()->user()->name }}</a>
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button type="submit">logout</button>
-                </form>
-            </div>
-        @endif
-
+        </nav>
     </div>
 </header>

@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'Alhisan' }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
 
     {{-- <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png"> --}}
+    <x-custom-css></x-custom-css>
+    {{ $css ?? '' }}
 </head>
 
 <body>
@@ -38,6 +41,9 @@
     </div>
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
+    <x-custom-js></x-custom-js>
+
+    {{ $js ?? '' }}
 </body>
 
 </html>
