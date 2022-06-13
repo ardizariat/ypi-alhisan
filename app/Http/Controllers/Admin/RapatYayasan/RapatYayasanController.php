@@ -100,7 +100,7 @@ class RapatYayasanController extends Controller
 
     public function share(RapatYayasan $rapatYayasan)
     {
-        $data = Share::page('http://jorenvanhocht.be')
+        $data = Share::page(route('admin.rapat-yayasan.absen-peserta', $rapatYayasan->id))
             ->whatsapp()
             ->getRawLinks();
 
