@@ -78,6 +78,28 @@ class RapatYayasanController extends Controller
         }
     }
 
+    public function update(RapatYayasan $rapatYayasan, RapatYayasanRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+            $rapatYayasan->update([
+                'hasil' => $request->hasil
+            ]);
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Hasil rapat berhasil diupdate',
+                'url' => route('admin.rapat-yayasan.show', $rapatYayasan->id)
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Schedule rapat yayasan gagal dihapus',
+            ], 400);
+        }
+    }
+
     public function delete(RapatYayasan $rapatYayasan)
     {
         try {
@@ -141,5 +163,23 @@ class RapatYayasanController extends Controller
             DB::rollback();
             return abort(500);
         }
+    }
+
+    public function show(RapatYayasan $rapatYayasan)
+    {
+        $data['title'] = 'Hasil Rapat Yayasan';
+        $data['peserta'] = $this->rapatYayasanRepository->peserta($rapatYayasan->id);
+        $data['rapatYayasan'] = $rapatYayasan;
+
+        return view('admin.rapatYayasan.show', compact('data'));
+    }
+
+    public function print(RapatYayasan $rapatYayasan)
+    {
+        $data['title'] = 'Hasil Rapat Yayasan';
+        $data['peserta'] = $this->rapatYayasanRepository->peserta($rapatYayasan->id);
+        $data['rapatYayasan'] = $rapatYayasan;
+
+        return view('admin.rapatYayasan.print', compact('data'));
     }
 }

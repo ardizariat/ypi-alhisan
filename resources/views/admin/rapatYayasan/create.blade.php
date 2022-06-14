@@ -1,5 +1,13 @@
 <x-admin-app-layout title="{{ $data['title'] }}">
-
+    <x-slot name="css">
+        <style>
+            .ck-editor__editable {
+                min-height: 200px;
+            }
+        </style>
+        <link href="{{ asset('assets/vendors/date-time-pickers/css/flatpicker-airbnb.css') }}" rel="stylesheet"
+            type="text/css" />
+    </x-slot>
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
@@ -9,7 +17,8 @@
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Rapat Yayasan</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.rapat-yayasan.index') }}">Rapat
+                                    Yayasan</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $data['title'] }}</li>
                         </ol>
                     </nav>
@@ -51,23 +60,21 @@
                                             <div class="col-md-8">
                                                 <div class="form-group has-icon-left">
                                                     <div class="position-relative">
-                                                        <input type="datetime-local" class="form-control"
-                                                            name="tanggal" placeholder="Tanggal rapat"
-                                                            autocomplete="off">
+                                                        <input type="text" class="form-control date-time" name="tanggal"
+                                                            placeholder="Tanggal rapat" autocomplete="off">
                                                         <div class="form-control-icon">
                                                             <i class="bi bi-calendar"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 col-sm-4">
                                                 <label>Rencana Bahasan</label>
                                             </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group with-title mb-3">
+                                            <div class="col-md-8 col-sm-8 mt-2">
+                                                <div class="form-group">
                                                     <div class="position-relative">
-                                                        <textarea class="form-control" autocomplete="off" name="bahasan" rows="5"></textarea>
-                                                        <label>Rencana bahasan</label>
+                                                        <textarea id="bahasan" class="form-control" autocomplete="off" name="bahasan" rows="5"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,8 +94,17 @@
     </div>
 
     <x-slot name="js">
+        <script src="{{ asset('assets/vendors/ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('assets/vendors/date-time-pickers/js/flatpickr.js') }}"></script>
+        <script src="{{ asset('assets/vendors/date-time-pickers/js/date-time-picker-script.js') }}"></script>
         <script>
-            const save = (data, method) => {
+            CKEDITOR.replace('bahasan')
+            const save = (data) => {
+                event.preventDefault()
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement()
+                }
+
                 sendData(data).then((result) => {
                     alertSuccess(result.message)
                     pindahHalaman(result.url, 2000)
@@ -96,6 +112,16 @@
                     alertError()
                 })
             }
+
+            // document.addEventListener("DOMContentLoaded", function(event) { 
+            // })
+
+            $(document).ready(function() {
+                $(".date-time").flatpickr({
+                    enableTime: true,
+                    time_24hr: true,
+                })
+            })
         </script>
     </x-slot>
 </x-admin-app-layout>

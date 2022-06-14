@@ -55,7 +55,7 @@
                          <span>Artikel</span>
                      </a>
                  </li>
-                 <li class="sidebar-item  {{ activeClass('admin.rapat-yayasan.index') }}">
+                 <li class="sidebar-item  {{ activeClass('admin.rapat-yayasan.index') }} {{ activeClass('admin.rapat-yayasan.show') }} {{ activeClass('admin.rapat-yayasan.create') }}">
                      <a href="{{ route('admin.rapat-yayasan.index') }}" class='sidebar-link'>
                          <i class="bi bi-border-width"></i>
                          <span>Rapat Yayasan</span>

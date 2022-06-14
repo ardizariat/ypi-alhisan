@@ -24,7 +24,8 @@ class RapatYayasanRequest extends FormRequest
     public function rules()
     {
         return [
-            'tanggal' => 'required'
+            // 'tanggal' => 'required',
+            // 'bahasan' => 'required',
         ];
     }
 }

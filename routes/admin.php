@@ -13,8 +13,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'index')->name('index');
         Route::get('/tambah', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        Route::delete('/{rapatYayasan}', 'delete')->name('delete');
         Route::get('/share/{rapatYayasan}', 'share')->name('share');
         Route::get('/absen-peserta/{rapatYayasan}', 'absenPeserta')->name('absen-peserta');
+        Route::get('/{rapatYayasan}', 'show')->name('show');
+        Route::get('/{rapatYayasan}/print', 'print')->name('print');
+        Route::put('/{rapatYayasan}', 'update')->name('update');
+        Route::delete('/{rapatYayasan}', 'delete')->name('delete');
     });
 });
