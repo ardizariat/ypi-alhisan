@@ -4,7 +4,9 @@ namespace App\Repositories\Interface;
 
 interface ArtikelInterface
 {
-    public function artikel();
+    public function artikelApp();
+
+    public function artikelAdmin();
 
     public function artikelDetail($slug);
 

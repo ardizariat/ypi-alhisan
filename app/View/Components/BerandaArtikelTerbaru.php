@@ -27,7 +27,7 @@ class BerandaArtikelTerbaru extends Component
     public function render()
     {
         $data = $this->artikelRepository
-            ->artikel()
+            ->artikelApp()
             ->paginate(3);
         return view('components.beranda-artikel-terbaru', compact('data'));
     }

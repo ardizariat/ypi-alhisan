@@ -27,7 +27,7 @@ class ArtikelSeeder extends Seeder
                 'judul' => $i . Str::title($faker->sentence()),
                 'konten' => $faker->paragraph(50),
                 'dipublikasi' => now()->toDateString(),
-                'status' => 'dipublikasi',
+                'status' => $faker->randomElement(['dipublikasi', 'draft']),
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString(),
             ]);

@@ -67,9 +67,7 @@
                             </h4>
                         </div>
                         <div class="card-body px-0 py-1">
-                            <p class="widget-todo-title ml-50">
-                                {!! $data['rapatYayasan']->bahasan !!}
-                            </p>
+                            {!! $data['rapatYayasan']->bahasan !!}
                         </div>
                     </div>
                 </div>

@@ -126,3 +126,16 @@ function tanggalJamSekarang()
 {
     return now()->toDateTimeLocalString();
 }
+
+function tanggalSekarang()
+{
+    return now()->toDateString();
+}
+
+function uploadFile($file, string $path)
+{
+    $extension = $file->getClientOriginalExtension();
+    $filename = time() . '_' . uniqid() . '.' . $extension;
+    $path = $file->storeAs($path, $filename);
+    return $filename;
+}

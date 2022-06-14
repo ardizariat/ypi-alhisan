@@ -15,7 +15,7 @@
                 </td>
                 <td>
                     {!! $item->kode !!}
-{{--                    {!! QrCode::size(100)->generate($item->kode) !!}--}}
+                    {{-- {!! QrCode::size(100)->generate($item->kode) !!} --}}
                 </td>
                 <td>{!! tanggalJam($item->tanggal) !!}</td>
                 <td>{!! $item->bahasan !!}</td>
@@ -43,7 +43,11 @@
             </tr>
         @empty
             <tr>
-                <td colspan="3">Data tidak ada</td>
+                <td></td>
+                <td></td>
+                <td>Data tidak ada</td>
+                <td></td>
+                <td></td>
             </tr>
         @endforelse
     </tbody>

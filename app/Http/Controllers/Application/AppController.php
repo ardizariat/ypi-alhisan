@@ -67,7 +67,7 @@ class AppController extends Controller
         if ($request->ajax()) {
             $q = $request->get('q');
 
-            $data['artikel'] = $this->artikelRepository->artikel()
+            $data['artikel'] = $this->artikelRepository->artikelApp()
                 ->when(
                     $q ?? false,
                     fn ($query) =>
@@ -79,11 +79,11 @@ class AppController extends Controller
 
         // Get artikel
         $data['artikel'] = $this->artikelRepository
-            ->artikel()
+            ->artikelApp()
             ->paginate($perPage);
 
         $data['artikelTerbaru'] = $this->artikelRepository
-            ->artikel()->limit(5)->get();
+            ->artikelApp()->limit(5)->get();
 
         // Get kategori
         $data['kategori'] = $this->artikelRepository->kategoriArtikel();

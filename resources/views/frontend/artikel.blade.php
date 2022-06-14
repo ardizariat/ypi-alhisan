@@ -1,4 +1,13 @@
 <x-app-layout title="{{ $data['title'] }}">
+    <x-slot name="css">
+        <style>
+            .img-artikel {
+                width: 860px;
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </x-slot>
     <main id="main">
 
         <!-- ======= Breadcrumbs ======= -->
@@ -105,6 +114,13 @@
             //     })
             // })
 
+            // let link = document.querySelector('.pagination-link a')
+            // link.addEventListener('click', (e) => {
+            //     e.preventDefault()
+            //     let page = link.href.split("page=")[1],
+            //         q = document.getElementsByName('search')[0].value
+            //     fetchData(page, q)
+            // })
             $(document).on('click', '.pagination-link a', function(e) {
                 e.preventDefault()
                 let page = $(this).attr('href').split('page=')[1],

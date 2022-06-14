@@ -23,7 +23,13 @@
                     <div class="shadow card">
                         <div class="card-content">
                             <div class="card-body">
-                                <div class="row d-flex justify-content-end">
+                                <div class="row d-flex justify-content-between">
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <div class="form-group position-relative has-icon-right">
+                                            <a href="{{ route('admin.artikel.create') }}"
+                                                class="btn icon icon-left btn-outline-dark">Tambah</a>
+                                        </div>
+                                    </div>
                                     <div class="col-md-4 col-lg-4 col-sm-12">
                                         <div class="form-group position-relative has-icon-right">
                                             <input onkeyup="cari(this)" type="text" class="form-control"

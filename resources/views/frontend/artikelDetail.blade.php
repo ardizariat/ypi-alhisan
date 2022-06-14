@@ -1,9 +1,18 @@
 <x-app-layout title="{{ $data['title'] }}">
+    <x-slot name="css">
+        <style>
+            .img-artikel {
+                width: 860px;
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </x-slot>
     <main id="main">
 
         <!-- ======= Breadcrumbs ======= -->
         <x-breadcrumbs-component>
-            <x-slot name="currentPage">{{ $data['title'] }}</x-slot>
+            <x-slot name="currentPage">Artikel Detail</x-slot>
         </x-breadcrumbs-component>
         <!-- End Breadcrumbs -->
 
@@ -18,8 +27,8 @@
                         <article class="entry entry-single">
 
                             <div class="entry-img">
-                                <img src="{{ asset('application/img/blog/blog-1.jpg') }}" alt=""
-                                    class="img-fluid">
+                                <img src="{{ asset('storage/artikel/' . $data['data']->thumbnail) }}" alt=""
+                                    class="img-artikel img-fluid">
                             </div>
 
                             <h2 class="entry-title">

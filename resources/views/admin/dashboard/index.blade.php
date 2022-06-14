@@ -1,5 +1,4 @@
 <x-admin-app-layout>
-
     <div class="page-heading">
         <div class="page-title">
             <div class="row">

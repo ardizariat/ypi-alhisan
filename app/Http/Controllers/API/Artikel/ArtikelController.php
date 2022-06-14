@@ -28,7 +28,7 @@ class ArtikelController extends Controller
         ];
 
         $data = $this->artikelRepository
-            ->artikel($params)
+            ->artikelApp($params)
             ->paginate($params['perPage'])
             ->withQueryString();
 

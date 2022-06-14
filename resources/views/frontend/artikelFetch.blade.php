@@ -1,6 +1,6 @@
 @forelse ($data['artikel'] as $item)
     <x-article-frontend-component>
-        <x-slot name="urlImage">{{ asset('application/img/blog/blog-1.jpg') }}</x-slot>
+        <x-slot name="urlImage">{{ asset('storage/artikel/' . $item->thumbnail) }}</x-slot>
         <x-slot name="judul">{!! Str::limit($item->judul, 30, '.') !!}</x-slot>
         <x-slot name="penulis">
             <li class="d-flex align-items-center">

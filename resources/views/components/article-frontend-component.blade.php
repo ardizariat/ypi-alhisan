@@ -1,7 +1,7 @@
 <article class="entry" id="artikel">
 
     <div class="entry-img">
-        <img src="{{ $urlImage ?? '' }}" alt="blog-image" class="img-fluid">
+        <img src="{{ $urlImage ?? '' }}" alt="blog-image" class="img-artikel img-fluid">
     </div>
 
     <h2 class="entry-title">

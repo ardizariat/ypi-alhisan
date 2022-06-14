@@ -5,7 +5,13 @@
 
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h3 class="mt-xl-5 pt-xl-3">
-                        <a class="text-decoration-none text-white" href="{{ route('auth.login') }}">YPI Alhisan</a>
+                        @auth
+                            <a class="text-decoration-none text-white" href="{{ route('admin.dashboard.index') }}">YPI
+                                Alhisan</a>
+                        @else
+                            <a class="text-decoration-none text-white" href="{{ route('auth.login') }}">YPI Alhisan</a>
+                        @endauth
+
                     </h3>
                 </div>
 
@@ -21,7 +27,8 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <ul>
                         @foreach ($footer['2'] as $name => $url)
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{ $url }}">{{ $name }}</a>
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{{ $url }}">{{ $name }}</a>
                             </li>
                         @endforeach
                     </ul>
