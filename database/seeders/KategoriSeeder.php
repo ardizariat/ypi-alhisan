@@ -4,9 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class KategoriSeeder extends Seeder
 {
@@ -17,12 +15,14 @@ class KategoriSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
-
-        for ($i = 1; $i <= 6; $i++) {
-            DB::table('kategori')->insertGetId([
-                'nama' => $faker->sentence(4),
-                'slug' => Str::slug($faker->sentence(3)),
+        $data = [
+            ["Al-Qur'an", 'al-quran', 'artikel', 'aktif'],
+            ["Al-Hadist", 'al-hadist', 'artikel', 'aktif'],
+        ];
+        foreach ($data as $item) {
+            DB::table('kategori')->insert([
+                'nama' => $item[0],
+                'slug' => $item[1],
                 'kategori' => 'artikel',
                 'status' => 'aktif',
                 'created_at' => now()->toDateTimeString(),
