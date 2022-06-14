@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('artikel', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('kategori_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->text('judul');
             $table->longText('konten');
