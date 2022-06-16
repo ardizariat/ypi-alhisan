@@ -16,6 +16,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
+        "maatwebsite/excel": "^3.1",
         "nasution/terbilang": "^0.1.0",
         "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-backup": "^8.1",

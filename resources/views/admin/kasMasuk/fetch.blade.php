@@ -48,6 +48,6 @@
 </table>
 @if ($data['kasMasuk']->hasPages())
     <tfoot>
-        {{ $data['artikel']->links('components.pagination-admin') }}
+        {{ $data['kasMasuk']->links('components.pagination-admin') }}
     </tfoot>
 @endif

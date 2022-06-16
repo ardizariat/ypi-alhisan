@@ -11,4 +11,6 @@ interface KasMasukInterface
     public function updateKasMasuk($kasMasuk, $request);
 
     public function deleteKasMasuk($kasMasuk);
+
+    public function dataLaporanKasMasuk($dari, $sampai);
 }

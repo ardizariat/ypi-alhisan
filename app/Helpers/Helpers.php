@@ -139,3 +139,25 @@ function uploadFile($file, string $path)
     $path = $file->storeAs($path, $filename);
     return $filename;
 }
+
+function alhisan()
+{
+    return DB::table('alhisan as a')
+        ->selectRaw('a.*')
+        ->first();
+}
+
+function saldoKas()
+{
+    $kasMasuk = DB::table('kas_masuk as km')
+        ->select('km.nominal')
+        ->get();
+    $totalKasMasuk = $kasMasuk->sum('nominal');
+
+    $kasKeluar = DB::table('kas_keluar as kk')
+        ->select('kk.nominal')
+        ->get();
+    $totalKasKeluar = $kasKeluar->sum('nominal');
+
+    return $totalKasMasuk - $totalKasKeluar;
+}

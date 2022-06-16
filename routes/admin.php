@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\Alhisan\AlhisanController;
 use App\Http\Controllers\Admin\Artikel\ArtikelController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Galeri\PosterDakwahController;
 use App\Http\Controllers\Admin\KalimatHikmah\KalimatHikmahController;
-use App\Http\Controllers\Admin\KasMasuk\KasMasukController;
+use App\Http\Controllers\Admin\Kas\{
+    KasMasukController,
+    KasKeluarController
+};
 use App\Http\Controllers\Admin\RapatYayasan\RapatYayasanController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,9 +55,30 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/create', 'create')->name('create');
         Route::get('/{kasMasuk}/edit', 'edit')->name('edit');
         Route::get('/modal-ekspor-laporan', 'modalEksporLaporan')->name('modal-ekspor-laporan');
-        Route::post('/ekspor-laporan', 'eksporLaporan')->name('ekspor-laporan');
+        Route::get('/ekspor-laporan', 'eksporLaporan')->name('ekspor-laporan');
         Route::post('/', 'store')->name('store');
         Route::put('/{kasMasuk}', 'update')->name('update');
         Route::delete('/{kasMasuk}', 'delete')->name('delete');
+    });
+
+    Route::controller(KasKeluarController::class)->prefix('kas-keluar')->name('kas-keluar.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::get('/{kasKeluar}/edit', 'edit')->name('edit');
+        Route::get('/modal-ekspor-laporan', 'modalEksporLaporan')->name('modal-ekspor-laporan');
+        Route::get('/ekspor-laporan', 'eksporLaporan')->name('ekspor-laporan');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{kasKeluar}', 'update')->name('update');
+        Route::delete('/{kasKeluar}', 'delete')->name('delete');
+    });
+
+    Route::controller(AlhisanController::class)->prefix('alhisan')->name('alhisan.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{alhisan}/edit', 'edit')->name('edit');
+        Route::put('/{alhisan}', 'update')->name('update');
+    });
+
+    Route::controller(PosterDakwahController::class)->prefix('poster-dakwah')->name('poster-dakwah.')->group(function () {
+        Route::get('/', 'index')->name('index');
     });
 });

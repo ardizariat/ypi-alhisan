@@ -6,10 +6,11 @@
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h3 class="mt-xl-5 pt-xl-3">
                         @auth
-                            <a class="text-decoration-none text-white" href="{{ route('admin.dashboard.index') }}">YPI
-                                Alhisan</a>
+                            <a class="text-decoration-none text-white" href="{{ route('admin.dashboard.index') }}">
+                                {!! alhisan()->nama !!}</a>
                         @else
-                            <a class="text-decoration-none text-white" href="{{ route('auth.login') }}">YPI Alhisan</a>
+                            <a class="text-decoration-none text-white"
+                                href="{{ route('auth.login') }}">{!! alhisan()->nama !!}</a>
                         @endauth
 
                     </h3>
@@ -18,7 +19,8 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <ul>
                         @foreach ($footer['1'] as $name => $url)
-                            <li><i class="bx bx-chevron-right"></i> <a href="{{ $url }}">{{ $name }}</a>
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{{ $url }}">{{ $name }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -37,19 +39,12 @@
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Kontak</h4>
                     <p>
-                        Jl. Harapan Baru Timur Blok Ga 1 No.82,<br>
-                        RT.003/RW.007, Kota Baru, <br>
-                        Bekasi Barat, Kota Bekasi,<br>
-                        Jawa Barat 17133<br>
+                        {!! alhisan()->alamat !!}
                     </p>
                     <p>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        <strong>Telpon:</strong> {!! alhisan()->no_telpon !!}<br>
+                        <strong>Email:</strong> {!! alhisan()->email !!}<br>
                     </p>
-                    {{-- <form action="" method="post" class="d-flex">
-                        <input type="email" class="form-control" name="email">
-                        <button type="submit" class="btn btn-outline-success">Subscribe</button>
-                    </form> --}}
                 </div>
 
             </div>
@@ -60,7 +55,7 @@
 
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-                &copy; Copyright <strong><span>Alhisan</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>{!! alhisan()->nama !!}</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->

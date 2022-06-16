@@ -2,38 +2,38 @@
 
 namespace App\Repositories;
 
-use App\Models\KasMasuk;
-use App\Repositories\Interface\KasMasukInterface;
+use App\Models\KasKeluar;
+use App\Repositories\Interface\KasKeluarInterface;
 use Illuminate\Support\Facades\DB;
 
-class KasMasukRepository implements KasMasukInterface
+class KasKeluarRepository implements KasKeluarInterface
 {
-    public function kasMasukAdmin()
+    public function kasKeluarAdmin()
     {
-        return DB::table('kas_masuk as km')
+        return DB::table('kas_keluar as kk')
             ->selectRaw('
-            km.*
+            kk.*
         ')
-            ->orderByDesc('km.tanggal');
+            ->orderByDesc('kk.tanggal');
     }
 
-    public function storeKasMasuk($request)
+    public function storeKasKeluar($request)
     {
         try {
             DB::beginTransaction();
-            $kasMasuk = new KasMasuk();
-            $kasMasuk->dari = $request->dari;
-            $kasMasuk->tanggal = $request->tanggal;
-            $kasMasuk->nominal = $request->nominal;
-            $kasMasuk->keterangan = $request->keterangan;
-            $kasMasuk->save();
+            $kasKeluar = new KasKeluar();
+            $kasKeluar->untuk = $request->untuk;
+            $kasKeluar->tanggal = $request->tanggal;
+            $kasKeluar->nominal = $request->nominal;
+            $kasKeluar->keterangan = $request->keterangan;
+            $kasKeluar->save();
 
             DB::commit();
             $response = [
                 'status_code' => 201,
                 'status' => 'success',
                 'message' => 'Data berhasil dibuat',
-                'url' => route('admin.kas-masuk.index')
+                'url' => route('admin.kas-keluar.index')
             ];
 
             return $response;
@@ -49,22 +49,22 @@ class KasMasukRepository implements KasMasukInterface
         }
     }
 
-    public function updateKasMasuk($kasMasuk, $request)
+    public function updateKasKeluar($kasKeluar, $request)
     {
         try {
             DB::beginTransaction();
-            $kasMasuk->dari = $request->dari;
-            $kasMasuk->tanggal = $request->tanggal;
-            $kasMasuk->nominal = $request->nominal;
-            $kasMasuk->keterangan = $request->keterangan;
-            $kasMasuk->update();
+            $kasKeluar->untuk = $request->untuk;
+            $kasKeluar->tanggal = $request->tanggal;
+            $kasKeluar->nominal = $request->nominal;
+            $kasKeluar->keterangan = $request->keterangan;
+            $kasKeluar->update();
 
             DB::commit();
             $response = [
                 'status_code' => 200,
                 'status' => 'success',
                 'message' => 'Data berhasil diupdate',
-                'url' => route('admin.kas-masuk.index')
+                'url' => route('admin.kas-keluar.index')
             ];
 
             return $response;
@@ -80,19 +80,19 @@ class KasMasukRepository implements KasMasukInterface
         }
     }
 
-    public function deleteKasMasuk($kasMasuk)
+    public function deleteKasKeluar($kasKeluar)
     {
         try {
             DB::beginTransaction();
 
-            $kasMasuk->delete();
+            $kasKeluar->delete();
 
             DB::commit();
             $response = [
                 'status_code' => 200,
                 'status' => 'success',
                 'message' => 'Data berhasil dihapus',
-                'url' => route('admin.kas-masuk.index')
+                'url' => route('admin.kas-keluar.index')
             ];
 
             return $response;
@@ -108,11 +108,11 @@ class KasMasukRepository implements KasMasukInterface
         }
     }
 
-    public function dataLaporanKasMasuk($dari, $sampai)
+    public function dataLaporanKasKeluar($dari, $sampai)
     {
-        return DB::table('kas_masuk as km')
-            ->whereBetween('km.tanggal', [$dari, $sampai])
-            ->orderByDesc('km.tanggal')
+        return DB::table('kas_keluar as kk')
+            ->whereBetween('kk.tanggal', [$dari, $sampai])
+            ->orderByDesc('kk.tanggal')
             ->get();
     }
 }

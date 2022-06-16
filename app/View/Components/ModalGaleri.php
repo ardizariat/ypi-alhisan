@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class PrintLayout extends Component
+class ModalGaleri extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class PrintLayout extends Component
      */
     public function render()
     {
-        return view('components.print-layout');
+        return view('components.modal-galeri');
     }
 }

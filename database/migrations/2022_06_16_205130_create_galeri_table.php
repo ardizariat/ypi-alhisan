@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kas_masuk', function (Blueprint $table) {
+        Schema::create('galeri', function (Blueprint $table) {
             $table->id();
-            $table->string('dari')->nullable()->default('hamba alloh');
-            $table->text('keterangan')->nullable();
-            $table->decimal('nominal', 13, 0)->nullable()->default(0);
-            $table->date('tanggal')->nullable();
-            $table->string('bukti_pembayaran')->nullable();
+            $table->string('image')->nullable();
+            $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
+
+            $table->foreign('kategori_id')->references('id')
+                ->on('kategori')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kas_masuk');
+        Schema::dropIfExists('galeri');
     }
 };

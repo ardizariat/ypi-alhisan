@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin\KasMasuk;
+namespace App\Http\Controllers\Admin\Kas;
 
+use App\Exports\Kas\LaporanKasMasukExport;
 use App\Http\Controllers\Controller;
 use App\Models\KasMasuk;
 use App\Repositories\Interface\KasMasukInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Excel;
 
 class KasMasukController extends Controller
 {
@@ -215,7 +217,7 @@ class KasMasukController extends Controller
     public function modalEksporLaporan()
     {
         $output = '
-            <form target="_blank" method="post" action="' . route('admin.kas-masuk.ekspor-laporan') . '">
+            <form target="_blank" action="' . route('admin.kas-masuk.ekspor-laporan') . '">
                 <div class="modal-header">
                     <h5 class="modal-title">Ekspor Laporan</h5>
                     <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -223,8 +225,6 @@ class KasMasukController extends Controller
                     </button>
                 </div>
                 <div class="modal-body">
-                <input name="_token" value="' . csrf_token() . '" type="hidden">
-                    <input name="_method" type="hidden" value="post">
                     <div class="row g-gs">
                         <div class="col-6">
                             <div class="form-group">
@@ -248,7 +248,7 @@ class KasMasukController extends Controller
                             <div class="form-group">
                                 <label class="form-label">Jenis File</label>
                                 <div class="form-control-wrap">
-                                    <select name="jenis" class="form-control">
+                                    <select name="jenis_file" class="form-control">
                                         <option value="pdf">PDF</option>
                                         <option value="excel">EXCEL</option>
                                     </select>
@@ -274,8 +274,17 @@ class KasMasukController extends Controller
     {
         $dari = Carbon::parse($request->dari)->startOfDay();
         $sampai = Carbon::parse($request->sampai)->endOfDay();
+        $jenisFile = $request->jenis_file;
 
-        $data = KasMasuk::whereBetween('tanggal', [$dari, $sampai])->get();
-        return $data;
+        $data['title'] = 'Laporan Kas Masuk';
+        $data['dari'] = $request->dari;
+        $data['sampai'] = $request->sampai;
+        $data['data'] = $this->kasMasukRepository->dataLaporanKasMasuk($dari, $sampai);
+
+        if ($jenisFile === 'pdf') {
+            return view('admin.kasMasuk.laporan.pdf', compact('data'));
+        } else if ($jenisFile === 'excel') {
+            return Excel::download(new LaporanKasMasukExport($data), 'kas-masuk.xlsx');
+        }
     }
 }

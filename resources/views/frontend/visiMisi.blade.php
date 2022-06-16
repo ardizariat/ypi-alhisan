@@ -21,9 +21,7 @@
                             <ul>
                                 <x-visi-misi-component>
                                     <x-slot name="konten">
-                                        Menjadi lembaga dakwah dan pendidikan islam terbaik dalam
-                                        mencerahkan dan mencerdaskan kehidupan umat guna mewujudkan
-                                        generasi istimewa yang beriman, berilmu dan bertaqwa.
+                                        {!! alhisan()->visi !!}
                                     </x-slot>
                                 </x-visi-misi-component>
                             </ul>
@@ -41,26 +39,7 @@
                             <ul>
                                 <x-visi-misi-component>
                                     <x-slot name="konten">
-                                        <ol>
-                                            <li>
-                                                Mewujudkan program-program tarbiyah islamiyah yang komperhensif
-                                                meliputi semua prinsip-prinsip agama islam, baik aqidah, ibadah,
-                                                mu'amalah, akhlaq dan adab.
-                                            </li>
-                                            <li>
-                                                Menjadi wadah sebagai media dakwah, sosial dan pendidikan untuk
-                                                melaksanakan prinsip-prinsip ajaran islam yang berlandaskan
-                                                Al-Qur'an dan Al-Hadist dalam kehidupan.
-                                            </li>
-                                            <li>
-                                                Membina dan memajukan masyarakat melalui pengembangan kegiatan
-                                                yang meningkatkan IMTAQ dan IPTEK sesuai dengan ajaran islam
-                                                untuk mewujudkan masyarakat yang beriman, berilmu dan bertaqwa.
-                                            </li>
-                                            <li>
-                                                Mendorong terwujudnya masyarakat yang sejahtera dan menjaga
-                                                ukhuwah serta kesatuan umat</li>
-                                        </ol>
+                                        {!! alhisan()->misi !!}
                                     </x-slot>
                                 </x-visi-misi-component>
                             </ul>
@@ -80,8 +59,7 @@
                             <ul>
                                 <x-visi-misi-component>
                                     <x-slot name="konten">
-                                        Mencetak generasi istimewa yang berkarakter dan menjadi pionir dalam membangun
-                                        masyarakat yang beriman, berilmu dan kesejahteraan umat.
+                                        {!! alhisan()->tujuan !!}
                                     </x-slot>
                                 </x-visi-misi-component>
                             </ul>

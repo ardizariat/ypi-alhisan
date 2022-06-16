@@ -19,7 +19,6 @@
                 </div>
             </div>
         </div>
-
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
@@ -38,10 +37,10 @@
                                     <div class="col-md-4 col-lg-4 col-sm-12">
                                         <div class="form-group position-relative has-icon-right">
                                             <button type="button"
-                                                onclick="showModal(`{{ route('admin.kas-masuk.create') }}`)"
+                                                onclick="showModal(`{{ route('admin.kas-keluar.create') }}`)"
                                                 class="btn icon icon-left btn-outline-dark">Tambah</button>
                                             <button type="button"
-                                                onclick="showModal(`{{ route('admin.kas-masuk.modal-ekspor-laporan') }}`)"
+                                                onclick="showModal(`{{ route('admin.kas-keluar.modal-ekspor-laporan') }}`)"
                                                 class="btn icon icon-left btn-outline-success">Ekspor Laporan</button>
                                         </div>
                                     </div>
@@ -56,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive" id="data">
-                                    @include('admin.kasMasuk.fetch')
+                                    @include('admin.kasKeluar.fetch')
                                 </div>
                             </div>
                         </div>
@@ -79,7 +78,7 @@
             }
 
             const fetchData = async (page = '', q = '') => {
-                fetch(`/admin/kas-masuk?page=${page}&q=${q}`, {
+                fetch(`/admin/kas-keluar?page=${page}&q=${q}`, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         },

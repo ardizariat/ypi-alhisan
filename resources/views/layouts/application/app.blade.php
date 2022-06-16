@@ -4,6 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="title" content="yayasan pendidikan islam alhisan bekasi">
+    <meta name="description"
+        content="yayasan pendidikan islam alhisan bekasi, kajian, tkq, tpq, alquran, islam, tauhid,  pendidikan">
+    <meta name="keywords"
+        content="yayasan pendidikan islam alhisan bekasi, kajian, tkq, tpq, alquran, islam, tauhid,  pendidikan, hijrah, alhadist">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+
 
     <title>{{ $title }}</title>
 
