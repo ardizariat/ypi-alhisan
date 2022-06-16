@@ -26,10 +26,11 @@
                             data-bs-original-title="bagikan" class="btn btn-outline-info">
                             <i class="bi bi-share"></i>
                         </a>
-                        <button data-bs-toggle="tooltip" title="ubah" data-bs-placement="top"
-                            data-bs-original-title="ubah" class="btn btn-outline-success">
+                        <a href="{{ route('admin.rapat-yayasan.edit', $item->id) }}" data-bs-toggle="tooltip"
+                            title="ubah" data-bs-placement="top" data-bs-original-title="ubah"
+                            class="btn btn-outline-success">
                             <i class="bi bi-pencil-square"></i>
-                        </button>
+                        </a>
                         <a href="{{ route('admin.rapat-yayasan.show', $item->id) }}" data-bs-toggle="tooltip"
                             title="detail" data-bs-placement="top" data-bs-original-title="detail"
                             class="btn btn-outline-dark"><i class="bi bi-eye"></i></a>

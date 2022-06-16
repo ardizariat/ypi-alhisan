@@ -78,12 +78,21 @@ class RapatYayasanController extends Controller
         }
     }
 
+    public function edit(RapatYayasan $rapatYayasan)
+    {
+        $data['title'] = 'Ubah Agenda Rapat Yayasan';
+        $data['data'] = $rapatYayasan;
+        return view('admin.rapatYayasan.edit', compact('data'));
+    }
+
     public function update(RapatYayasan $rapatYayasan, RapatYayasanRequest $request)
     {
         try {
             DB::beginTransaction();
             $rapatYayasan->update([
-                'hasil' => $request->hasil
+                'hasil' => $request->hasil,
+                'tanggal' => $request->tanggal,
+                'bahasan' => $request->bahasan,
             ]);
             DB::commit();
             return response()->json([

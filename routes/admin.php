@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'store')->name('store');
         Route::get('/share/{rapatYayasan}', 'share')->name('share');
         Route::get('/absen-peserta/{rapatYayasan}', 'absenPeserta')->name('absen-peserta');
+        Route::get('/{rapatYayasan}/edit', 'edit')->name('edit');
         Route::get('/{rapatYayasan}', 'show')->name('show');
         Route::get('/{rapatYayasan}/print', 'print')->name('print');
         Route::put('/{rapatYayasan}', 'update')->name('update');
