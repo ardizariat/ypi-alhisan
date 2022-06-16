@@ -3,12 +3,13 @@
          <div class="sidebar-header position-relative">
              <div class="d-flex justify-content-between align-items-center">
                  <div class="logo">
-                     <a href="/"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo" srcset=""></a>
+                     <a href="/"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo"
+                             srcset=""></a>
                  </div>
                  <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                         aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20"
-                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
+                         aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
+                         height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
                          <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
                              stroke-linejoin="round">
                              <path
@@ -49,30 +50,36 @@
                      </a>
                  </li>
                  <li
-                     class="sidebar-item {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }}">
+                     class="sidebar-item {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }} {{ activeClass('admin.artikel.edit') }} ">
                      <a href="{{ route('admin.artikel.index') }}" class='sidebar-link'>
                          <i class="bi bi-pen"></i>
                          <span>Artikel</span>
                      </a>
                  </li>
+                 <li class="sidebar-item {{ activeClass('admin.kalimat-hikmah.index') }}">
+                     <a href="{{ route('admin.kalimat-hikmah.index') }}" class='sidebar-link'>
+                         <i class="bi bi-vector-pen"></i>
+                         <span>Kalimat Hikmah</span>
+                     </a>
+                 </li>
                  <li
-                     class="sidebar-item  {{ activeClass('admin.rapat-yayasan.index') }} {{ activeClass('admin.rapat-yayasan.show') }} {{ activeClass('admin.rapat-yayasan.create') }}">
+                     class="sidebar-item {{ activeClass('admin.rapat-yayasan.index') }} {{ activeClass('admin.rapat-yayasan.show') }} {{ activeClass('admin.rapat-yayasan.create') }}">
                      <a href="{{ route('admin.rapat-yayasan.index') }}" class='sidebar-link'>
                          <i class="bi bi-border-width"></i>
                          <span>Rapat Yayasan</span>
                      </a>
                  </li>
-                 <li class="sidebar-item  has-sub">
+                 <li class="sidebar-item has-sub {{ activeClass('admin.kas-masuk.index') }}">
                      <a href="#" class='sidebar-link'>
-                         <i class="bi bi-stack"></i>
-                         <span>Kategori</span>
+                         <i class="bi bi-currency-exchange"></i>
+                         <span>Kas</span>
                      </a>
-                     <ul class="submenu">
-                         <li class="submenu-item ">
-                             <a href="component-alert.html">Artikel</a>
+                     <ul class="submenu {{ activeClass('admin.kas-masuk.index') }}">
+                         <li class="submenu-item {{ activeClass('admin.kas-masuk.index') }}">
+                             <a href="{{ route('admin.kas-masuk.index') }}">Kas Masuk</a>
                          </li>
                          <li class="submenu-item ">
-                             <a href="component-badge.html">Badge</a>
+                             <a href="component-badge.html">Kas Keluar</a>
                          </li>
                      </ul>
                  </li>

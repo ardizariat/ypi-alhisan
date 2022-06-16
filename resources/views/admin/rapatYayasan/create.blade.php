@@ -60,8 +60,9 @@
                                             <div class="col-md-8">
                                                 <div class="form-group has-icon-left">
                                                     <div class="position-relative">
-                                                        <input type="text" class="form-control date-time" name="tanggal"
-                                                            placeholder="Tanggal rapat" autocomplete="off">
+                                                        <input type="text" class="form-control date-time"
+                                                            name="tanggal" placeholder="Tanggal rapat"
+                                                            autocomplete="off">
                                                         <div class="form-control-icon">
                                                             <i class="bi bi-calendar"></i>
                                                         </div>
@@ -113,11 +114,8 @@
                 })
             }
 
-            // document.addEventListener("DOMContentLoaded", function(event) { 
-            // })
-
             $(document).ready(function() {
-                $(".date-time").flatpickr({
+                $(".max-date").flatpickr({
                     enableTime: true,
                     time_24hr: true,
                 })

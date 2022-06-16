@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class PengurusYayasanSeeder extends Seeder
 {
@@ -52,21 +55,33 @@ class PengurusYayasanSeeder extends Seeder
             ]);
         }
 
-        foreach ($users as $user) {
-            $userCreate = DB::table('users')->insertGetId([
-                'name' => $user[0],
-                'username' => $user[1],
-                'email' => $user[2],
+        foreach ($users as $item) {
+            $userId = DB::table('users')->insertGetId([
+                'name' => $item[0],
+                'username' => $item[1],
+                'email' => $item[2],
                 'password' => bcrypt('admin'),
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString(),
             ]);
 
-            $userNew = DB::table('users')->select('id', 'name')->whereId($userCreate)->first();
+            $profile = DB::table('profiles')->insertGetId([
+                'user_id' => $userId
+            ]);
+
+            $user = User::findOrFail($userId);
+            $role = 'admin';
+            $permission = ['create', 'read', 'update', 'delete'];
+            $user->assignRole([$role]);
+            $user->givePermissionTo([$permission]);
+            $role = Role::find(2);
+            $role->givePermissionTo([$permission]);
+
+            $userNew = DB::table('users')->select('id', 'name')->whereId($userId)->first();
 
             $pengurusYayasan = DB::table('pengurus_yayasan')->insertGetId([
                 'nama' => $userNew->name,
-                'user_id' => $userNew->id,
+                'user_id' => $userId,
                 'status' => 'aktif',
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString()
@@ -74,7 +89,7 @@ class PengurusYayasanSeeder extends Seeder
 
             $strukturOrganisasi = DB::table('struktur_organisasi')->insertGetId([
                 'pengurus_yayasan_id' => $pengurusYayasan,
-                'bagian_id' => $user[3],
+                'bagian_id' => $item[3],
                 'status' => 'aktif',
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString()

@@ -36,8 +36,8 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <form class="form form-horizontal" enctype="multipart/form-data"
-                                    action="{{ route('admin.artikel.store') }}">
-                                    @method('post')
+                                    action="{{ route('admin.artikel.update', $data['data']->id) }}">
+                                    @method('put')
                                     @csrf
                                     <div class="form-body">
                                         <div class="row">
@@ -47,7 +47,8 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <div class="position-relative">
-                                                        <input name="judul" autocomplete="off" type="text"
+                                                        <input name="judul" autocomplete="off"
+                                                            value="{{ $data['data']->judul }}" type="text"
                                                             class="form-control">
                                                     </div>
                                                 </div>
@@ -71,7 +72,9 @@
                                                     <select name="kategori_id" class="choices form-select">
                                                         <option disabled selected>Pilih kategori</option>
                                                         @foreach ($data['kategori'] as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->nama }}
+                                                            <option
+                                                                {{ $data['data']->kategori_id === $item->id ? 'selected' : '' }}
+                                                                value="{{ $item->id }}">{{ $item->nama }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -85,7 +88,9 @@
                                                     <select name="status" class="choices form-select">
                                                         <option disabled selected>Pilih status artikel</option>
                                                         @foreach ($data['status'] as $item)
-                                                            <option value="{{ $item }}">{{ $item }}
+                                                            <option
+                                                                {{ $data['data']->status === $item ? 'selected' : '' }}
+                                                                value="{{ $item }}">{{ $item }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -97,13 +102,13 @@
                                             <div class="col-md-12 col-sm-12 mt-2">
                                                 <div class="form-group">
                                                     <div class="position-relative">
-                                                        <textarea id="konten" class="form-control" autocomplete="off" name="konten" rows="5"></textarea>
+                                                        <textarea id="konten" class="form-control" autocomplete="off" name="konten" rows="5">{{ $data['data']->konten }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-3 d-flex justify-content-center">
                                                 <button onclick="save(this.form, 'post')" type="submit"
-                                                    class="btn btn-primary me-1 mb-1 rounded-pill">Simpan</button>
+                                                    class="btn btn-success me-1 mb-1 rounded-pill">Update</button>
                                             </div>
                                         </div>
                                     </div>

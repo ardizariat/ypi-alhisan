@@ -1,18 +1,19 @@
 <x-admin-app-layout title="{{ $data['title'] }}">
-
+    <x-custom-css>
+        <style>
+            .btn-opsi {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 99999;
+            }
+        </style>
+    </x-custom-css>
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>{{ $data['title'] }}</h3>
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ $data['title'] }}</li>
-                        </ol>
-                    </nav>
                 </div>
             </div>
         </div>
@@ -93,6 +94,29 @@
                     q = $('input[name=search]').val()
                 fetchData(page, q)
             })
+
+            const hapus = (url) => {
+                event.preventDefault()
+                Swal.fire({
+                    title: "Apakah anda yakin menghapus data ini?",
+                    text: "Data yang sudah dihapus tidak dapat dikembalikan lagi!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        deleteData(url).then((result) => {
+                            let res = result.data
+                            alertSuccess(res.message)
+                            pindahHalaman(res.url, 1000)
+                        }).catch((err) => {
+                            alertError()
+                        })
+                    }
+                })
+            }
         </script>
     </x-slot>
 </x-admin-app-layout>

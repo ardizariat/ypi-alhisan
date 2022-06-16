@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin\Artikel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ArtikelRequest;
 use App\Models\Artikel;
 use App\Repositories\Interface\ArtikelInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Share;
 
 class ArtikelController extends Controller
 {
@@ -51,41 +53,71 @@ class ArtikelController extends Controller
         return view('admin.artikel.create', compact('data'));
     }
 
-    public function store(Request $request)
+    public function store(ArtikelRequest $request)
     {
-        try {
-            DB::beginTransaction();
-
-            $slug = Str::slug($request->judul);
-            $artikelSlug = Artikel::where('slug', $slug)->first();
-            if ($artikelSlug)
-                $slug = $slug . rand(1, 10);
-            $artikel = new Artikel();
-            $artikel->judul = Str::title($request->judul);
-            $artikel->slug = $slug;
-            $artikel->kategori_id = $request->kategori_id;
-            $artikel->user_id = auth()->id();
-            $artikel->konten = $request->konten;
-            $artikel->status = $request->status ?? 'draft';
-            $artikel->dipublikasi = $request->status == 'dipublikasi' ? tanggalSekarang() : null;
-            if ($request->hasFile('thumbnail')) {
-                $filename = uploadFile($request->file('thumbnail'), 'artikel/');
-                $artikel->thumbnail = $filename;
-            }
-            $artikel->save();
-
-            DB::commit();
+        $req = $this->artikelRepository->storeArtikel($request);
+        if ($req['status'] == 'success') {
             return response()->json([
-                'status' => 'success',
-                'message' => 'Artikel berhasil dibuat',
-                'url' => route('admin.artikel.index')
-            ], 201);
-        } catch (\Exception $e) {
-            DB::rollback();
+                'data' => $req
+            ], $req['status_code']);
+        } else {
             return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-            ], 400);
+                'data' => $req
+            ], $req['status_code']);
+        }
+    }
+
+    public function show(Artikel $artikel)
+    {
+        $data['title'] = $artikel->judul;
+        $data['data'] = $this->artikelRepository->artikelDetail($artikel->slug);
+
+        return view('frontend.artikelDetail', compact('data'));
+    }
+
+    public function edit(Artikel $artikel)
+    {
+        $data['title'] = 'Ubah data';
+        $data['data'] = $this->artikelRepository->artikelDetail($artikel->slug);
+        $data['kategori'] = $this->artikelRepository->kategoriArtikel();
+        $data['status'] = parent::statusArtikel();
+        return view('admin.artikel.edit', compact('data'));
+    }
+
+    public function update(Artikel $artikel, ArtikelRequest $request)
+    {
+        $req = $this->artikelRepository->updateArtikel($artikel, $request);
+        if ($req['status'] == 'success') {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        } else {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        }
+    }
+
+    public function share(Artikel $artikel)
+    {
+        $data = Share::page(route('artikel-detail', $artikel->slug))
+            ->whatsapp()
+            ->getRawLinks();
+
+        return redirect($data);
+    }
+
+    public function delete(Artikel $artikel)
+    {
+        $req = $this->artikelRepository->deleteArtikel($artikel);
+        if ($req['status'] == 'success') {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        } else {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
         }
     }
 }

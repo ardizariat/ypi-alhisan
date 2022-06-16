@@ -1,5 +1,14 @@
 <x-admin-app-layout title="{{ $data['title'] }}">
-
+    <x-custom-css>
+        <style>
+            .btn-opsi {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 99999;
+            }
+        </style>
+    </x-custom-css>
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
@@ -18,8 +27,9 @@
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-4 col-lg-4 col-sm-12">
                                         <div class="form-group position-relative has-icon-right">
-                                            <a href="{{ route('admin.rapat-yayasan.create') }}"
-                                                class="btn icon icon-left btn-outline-dark">Tambah</a>
+                                            <button type="button"
+                                                onclick="showModal(`{{ route('admin.kalimat-hikmah.modal-create') }}`)"
+                                                class="btn icon icon-left btn-outline-dark">Tambah</button>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-lg-4 col-sm-12">
@@ -33,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive" id="data">
-                                    @include('admin.rapatYayasan.fetch')
+                                    @include('admin.kalimatHikmah.fetch')
                                 </div>
                             </div>
                         </div>
@@ -44,14 +54,19 @@
     </div>
 
     <x-slot name="js">
+        <x-modal>
+            <x-slot name="size">xl</x-slot>
+        </x-modal>
         <script>
+            const modal = document.getElementById('modal-all-in-one')
+
             const renderHtml = (template, node) => {
                 if (!node) return
                 node.innerHTML = template
             }
 
             const fetchData = async (page = '', q = '') => {
-                fetch(`/admin/rapat-yayasan?page=${page}&q=${q}`, {
+                fetch(`/admin/kalimat-hikmah?page=${page}&q=${q}`, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         },
@@ -99,12 +114,39 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         deleteData(url).then((result) => {
-                            alertSuccess(result.message)
-                            pindahHalaman(result.url, 1000)
+                            let res = result.data
+                            alertSuccess(res.message)
+                            pindahHalaman(res.url, 1000)
                         }).catch((err) => {
                             alertError()
                         })
                     }
+                })
+            }
+
+            const showModal = (url) => {
+                fetch(url)
+                    .then(function(res) {
+                        return res.text()
+                    })
+                    .then(function(html) {
+                        let modalContent = document.getElementById('modal-content')
+                        renderHtml(html, modalContent)
+                    })
+                    .catch(err => {
+                        alertError(err)
+                    })
+                $(modal).modal('show')
+            }
+
+            const save = (data) => {
+                event.preventDefault()
+                sendData(data).then((response) => {
+                    let res = response.data
+                    alertSuccess(res.message)
+                    pindahHalaman(res.url, 2000)
+                }).catch((err) => {
+                    alertError()
                 })
             }
         </script>

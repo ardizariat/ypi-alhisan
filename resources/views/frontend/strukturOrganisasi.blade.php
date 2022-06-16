@@ -17,11 +17,11 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'dewan pembina')
+                        @if ($item->bagian == 'dewan pembina')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach
@@ -32,11 +32,11 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'dewan pengawas')
+                        @if ($item->bagian == 'dewan pengawas')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach
@@ -48,22 +48,22 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'ketua')
+                        @if ($item->bagian == 'ketua')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'wakil' || $item['bagian'] == 'sekretaris' || $item['bagian'] == 'bendahara')
+                        @if ($item->bagian == 'wakil' || $item->bagian == 'sekretaris' || $item->bagian == 'bendahara')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach
@@ -71,33 +71,33 @@
 
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'bidang pendidikan dan dakwah')
+                        @if ($item->bagian == 'bidang pendidikan dan dakwah')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'bidang sosial')
+                        @if ($item->bagian == 'bidang sosial')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach ($data['data'] as $item)
-                        @if ($item['bagian'] == 'bidang usaha lainnya')
+                        @if ($item->bagian == 'bidang usaha lainnya')
                             <x-card-struktur-organisasi-component>
                                 <x-slot name="pathImage">application/img/user.png</x-slot>
-                                <x-slot name="nama">{!! $item['nama'] !!}</x-slot>
-                                <x-slot name="bagian">{!! $item['bagian'] !!}</x-slot>
+                                <x-slot name="nama">{!! $item->nama !!}</x-slot>
+                                <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
                         @endif
                     @endforeach

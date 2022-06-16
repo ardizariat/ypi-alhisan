@@ -44,7 +44,7 @@ function formatAngka(int $angka)
 
 function rp(int $angka)
 {
-    return 'Rp. ' . number_format($angka, 2, ',', '.');
+    return 'Rp. ' . number_format($angka, 0, ',', '.');
 }
 
 function tanggal($tanggal)

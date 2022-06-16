@@ -5,16 +5,19 @@ namespace App\Http\Controllers\Application;
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
 use App\Repositories\Interface\ArtikelInterface;
+use App\Repositories\Interface\PengurusYayasanInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
-    protected $artikelRepository;
+    protected $artikelRepository,
+        $pengurusYayasanRepository;
 
-    public function __construct(ArtikelInterface $artikelRepository)
+    public function __construct(ArtikelInterface $artikelRepository, PengurusYayasanInterface $pengurusYayasanRepository)
     {
         $this->artikelRepository = $artikelRepository;
+        $this->pengurusYayasanRepository = $pengurusYayasanRepository;
     }
 
     public function beranda(Request $request)
@@ -31,13 +34,7 @@ class AppController extends Controller
     public function strukturOrganisasi()
     {
         $data['title'] = 'Struktur Organisasi';
-        $req = Http::get(prefixAPI() . '/pengurus-yayasan/struktur-organisasi');
-        $ok = $req->ok();
-
-        if (!$ok) return $data['data'] = null;
-
-        $res = $req->json();
-        $data['data'] = $res['data'];
+        $data['data'] = $this->pengurusYayasanRepository->strukturOrganisasi();
         return view('frontend.strukturOrganisasi', compact('data'));
     }
 

@@ -38,6 +38,9 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return response()->json([
+            'message' => 'user logout',
+            'url' => route('beranda')
+        ], 200);
     }
 }
