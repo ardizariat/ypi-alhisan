@@ -52,8 +52,10 @@
                             <div class="sidebar-item recent-posts">
                                 @foreach ($data['artikelTerbaru'] as $item)
                                     <div class="post-item clearfix">
-                                        <img src="application/img/blog/blog-recent-1.jpg" alt="">
-                                        <h4><a href="blog-single.html">{!! $item->judul !!}</a></h4>
+                                        <img src="{{ asset('storage/artikel/' . $item->thumbnail) }}" alt="">
+                                        <h4><a
+                                                href="{{ route('artikel-detail', $item->slug) }}">{!! $item->judul !!}</a>
+                                        </h4>
                                         <time datetime="2020-01-01">{!! tanggal($item->dipublikasi) !!}</time>
                                     </div>
                                 @endforeach

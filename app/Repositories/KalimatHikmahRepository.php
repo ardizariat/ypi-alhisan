@@ -15,6 +15,15 @@ class KalimatHikmahRepository implements KalimatHikmahInterface
             ->orderByDesc('k.created_at');
     }
 
+    public function kalimatHikmah()
+    {
+        return DB::table('kalimat_hikmah as k')
+            ->selectRaw('k.id, k.penulis, k.text, k.created_at')
+            ->orderByDesc('k.created_at')
+            ->limit(20)
+            ->get();
+    }
+
     public function storeKalimatHikmah($request)
     {
         try {

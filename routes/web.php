@@ -13,5 +13,6 @@ Route::controller(AppController::class)->group(function () {
     Route::get('/struktur-organisasi', 'strukturOrganisasi')->name('struktur-organisasi');
     Route::get('/galeri', 'galeri')->name('galeri');
     Route::get('/artikel', 'artikel')->name('artikel');
+    Route::get('/kalimat-hikmah', 'kalimatHikmah')->name('kalimat-hikmah');
     Route::get('/artikel/{artikel:slug}', 'artikelDetail')->name('artikel-detail');
 });

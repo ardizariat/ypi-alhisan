@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Application;
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
 use App\Repositories\Interface\ArtikelInterface;
+use App\Repositories\Interface\KalimatHikmahInterface;
 use App\Repositories\Interface\PengurusYayasanInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -12,12 +13,17 @@ use Illuminate\Support\Facades\Http;
 class AppController extends Controller
 {
     protected $artikelRepository,
-        $pengurusYayasanRepository;
+        $pengurusYayasanRepository,
+        $kalimatHikmahRepository;
 
-    public function __construct(ArtikelInterface $artikelRepository, PengurusYayasanInterface $pengurusYayasanRepository)
-    {
+    public function __construct(
+        ArtikelInterface $artikelRepository,
+        PengurusYayasanInterface $pengurusYayasanRepository,
+        KalimatHikmahInterface $kalimatHikmahRepository
+    ) {
         $this->artikelRepository = $artikelRepository;
         $this->pengurusYayasanRepository = $pengurusYayasanRepository;
+        $this->kalimatHikmahRepository = $kalimatHikmahRepository;
     }
 
     public function beranda(Request $request)
@@ -95,5 +101,12 @@ class AppController extends Controller
         $data['data'] = $this->artikelRepository->artikelDetail($artikel->slug);
 
         return view('frontend.artikelDetail', compact('data'));
+    }
+
+    public function kalimatHikmah()
+    {
+        $data['title'] = 'Kalimat Hikmah';
+        $data['data'] = $this->kalimatHikmahRepository->kalimatHikmah();
+        return view('frontend.kalimatHikmah', compact('data'));
     }
 }
