@@ -88,6 +88,55 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
+                                                <label>Instagram</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <div class="position-relative">
+                                                        <input name="ig" autocomplete="off"
+                                                            value="{{ $data['data']->ig }}" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Facebook</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <div class="position-relative">
+                                                        <input name="fb" autocomplete="off"
+                                                            value="{{ $data['data']->fb }}" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Telegram</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <div class="position-relative">
+                                                        <input name="telegram" autocomplete="off"
+                                                            value="{{ $data['data']->telegram }}" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Youtube</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <div class="position-relative">
+                                                        <input name="youtube" autocomplete="off"
+                                                            value="{{ $data['data']->youtube }}" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-8">

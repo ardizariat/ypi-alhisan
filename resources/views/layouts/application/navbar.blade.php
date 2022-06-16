@@ -17,6 +17,15 @@
                                 @endforeach
                             </ul>
                         </li>
+                    @elseif ($name == 'dakwah')
+                        <li class="dropdown"><a href="#"><span>Dakwah</span> <i
+                                    class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                @foreach ($url as $subName => $subUrl)
+                                    <li><a href="{{ $subUrl }}">{{ $subName }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
                     @else
                         <li><a href="{{ $url }}"
                                 class="{{ activeClassFrontend($url) }}">{{ $name }}</a>

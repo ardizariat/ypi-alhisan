@@ -69,6 +69,26 @@
                                             <td>{!! $data['data']->email !!}</td>
                                         </tr>
                                         <tr>
+                                            <td width="20%">Instagram</td>
+                                            <td>:</td>
+                                            <td>{!! $data['data']->ig !!}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">Facebook</td>
+                                            <td>:</td>
+                                            <td>{!! $data['data']->fb !!}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">Telegram</td>
+                                            <td>:</td>
+                                            <td>{!! $data['data']->telegram !!}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">Youtube</td>
+                                            <td>:</td>
+                                            <td>{!! $data['data']->youtube !!}</td>
+                                        </tr>
+                                        <tr>
                                             <td width="20%">Alamat</td>
                                             <td>:</td>
                                             <td class="pt-4">{!! $data['data']->alamat !!}</td>

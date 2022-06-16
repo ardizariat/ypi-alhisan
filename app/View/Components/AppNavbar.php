@@ -31,6 +31,10 @@ class AppNavbar extends Component
                 'Visi & Misi' => route('visi-misi'),
             ],
             'Artikel' => route('artikel'),
+            'dakwah' => [
+                'Kalimat Hikmah' => route('tentang-kami'),
+                'Poster Dakwah' => route('struktur-organisasi'),
+            ],
             'Galeri' => route('galeri'),
             'Kontak' => route('kontak'),
         ];

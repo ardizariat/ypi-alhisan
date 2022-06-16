@@ -20,6 +20,10 @@ class Alhisan extends Model
             'misi',
             'tujuan',
             'alamat',
-            'sejarah'
+            'sejarah',
+            'ig',
+            'fb',
+            'telegram',
+            'youtube',
         ];
 }

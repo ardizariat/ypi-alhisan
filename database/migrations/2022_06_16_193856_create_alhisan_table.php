@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('logo')->nullable();
             $table->string('email')->nullable();
+            $table->string('ig')->nullable();
+            $table->string('fb')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('telegram')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('no_telpon')->nullable();
             $table->longText('visi')->nullable();
