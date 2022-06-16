@@ -20,7 +20,7 @@
 
         <section class="section">
             <div class="row d-flex justify-content-center">
-                <div class="col-8 col-md-8 col-lg-8 col-sm-12">
+                <div class="col-12 col-md-8 col-lg-8 col-sm-12">
                     <div class="card shadow">
                         <div class="card-content">
                             <div class="d-flex justify-content-center align-items-center">
