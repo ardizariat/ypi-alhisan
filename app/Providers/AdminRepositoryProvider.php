@@ -10,6 +10,7 @@ use App\Repositories\{
     KalimatHikmahRepository,
     KasMasukRepository,
     KasKeluarRepository,
+    UserRepository,
 };
 use App\Repositories\Interface\{
     PengurusYayasanInterface,
@@ -18,6 +19,7 @@ use App\Repositories\Interface\{
     KalimatHikmahInterface,
     KasMasukInterface,
     KasKeluarInterface,
+    UserInterface,
 };
 
 class AdminRepositoryProvider extends ServiceProvider
@@ -29,6 +31,10 @@ class AdminRepositoryProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(
+            UserInterface::class,
+            UserRepository::class
+        );
         $this->app->bind(
             KasKeluarInterface::class,
             KasKeluarRepository::class

@@ -73,6 +73,22 @@
                          </li>
                      </ul>
                  </li>
+                 <li
+                     class="sidebar-item has-sub {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
+                     <a href="#" class='sidebar-link'>
+                         <i class="bi bi-person-lines-fill"></i>
+                         <span>User</span>
+                     </a>
+                     <ul
+                         class="submenu {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
+                         <li class="submenu-item {{ activeClass('admin.user.index') }}">
+                             <a href="{{ route('admin.user.index') }}">User</a>
+                         </li>
+                         <li class="submenu-item {{ activeClass('admin.role-permission.index') }}">
+                             <a href="{{ route('admin.role-permission.index') }}">Role & Permission</a>
+                         </li>
+                     </ul>
+                 </li>
              </ul>
          </div>
      </div>

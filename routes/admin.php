@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\Kas\{
     KasKeluarController
 };
 use App\Http\Controllers\Admin\RapatYayasan\RapatYayasanController;
+use App\Http\Controllers\Admin\User\RoleAndPermissionController;
+use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
@@ -81,5 +83,31 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(PosterDakwahController::class)->prefix('poster-dakwah')->name('poster-dakwah.')->group(function () {
         Route::get('/', 'index')->name('index');
+    });
+
+    Route::controller(RoleAndPermissionController::class)->prefix('role-permission')->name('role-permission.')->group(function () {
+        Route::get('/', 'rolePermission')->name('index');
+        // ---------- Role ---------- //
+        Route::get('/create-role', 'createRole')->name('create-role');
+        Route::post('/store-role', 'storeRole')->name('store-role');
+        Route::get('/edit-role/{id}', 'editRole')->name('edit-role');
+        Route::put('/update-role/{id}', 'updateRole')->name('update-role');
+        Route::delete('/delete-role/{id}', 'deleteRole')->name('delete-role');
+
+        // ---------- permission ---------- //
+        Route::get('/create-permission', 'createPermission')->name('create-permission');
+        Route::post('/store-permission', 'storePermission')->name('store-permission');
+        Route::get('/edit-permission/{id}', 'editPermission')->name('edit-permission');
+        Route::put('/update-permission/{id}', 'updatePermission')->name('update-permission');
+        Route::delete('/delete-permission/{id}', 'deletePermission')->name('delete-permission');
+    });
+
+
+    Route::controller(UserController::class)->prefix('user')->name('user.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{user}/edit', 'edit')->name('edit');
+        Route::put('/{user}', 'update')->name('update');
     });
 });
