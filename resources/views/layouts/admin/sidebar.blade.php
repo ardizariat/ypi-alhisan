@@ -44,11 +44,17 @@
                          <span>Kalimat Hikmah</span>
                      </a>
                  </li>
-                 <li class="sidebar-item">
-                     <a href="application-gallery.html" class="sidebar-link">
+
+                 <li class="sidebar-item has-sub {{ activeClass('admin.poster-dakwah.index') }}">
+                     <a href="#" class='sidebar-link'>
                          <i class="bi bi-image-fill"></i>
-                         <span>Poster Dakwah</span>
+                         <span>Galeri</span>
                      </a>
+                     <ul class="submenu">
+                         <li class="submenu-item">
+                             <a href="{{ route('admin.poster-dakwah.index') }}">Poster Dakwah</a>
+                         </li>
+                     </ul>
                  </li>
                  <li
                      class="sidebar-item {{ activeClass('admin.rapat-yayasan.index') }} {{ activeClass('admin.rapat-yayasan.show') }} {{ activeClass('admin.rapat-yayasan.create') }}">
@@ -73,22 +79,24 @@
                          </li>
                      </ul>
                  </li>
-                 <li
-                     class="sidebar-item has-sub {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
-                     <a href="#" class='sidebar-link'>
-                         <i class="bi bi-person-lines-fill"></i>
-                         <span>User</span>
-                     </a>
-                     <ul
-                         class="submenu {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
-                         <li class="submenu-item {{ activeClass('admin.user.index') }}">
-                             <a href="{{ route('admin.user.index') }}">User</a>
-                         </li>
-                         <li class="submenu-item {{ activeClass('admin.role-permission.index') }}">
-                             <a href="{{ route('admin.role-permission.index') }}">Role & Permission</a>
-                         </li>
-                     </ul>
-                 </li>
+                 @role('superAdmin')
+                     <li
+                         class="sidebar-item has-sub {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
+                         <a href="#" class='sidebar-link'>
+                             <i class="bi bi-person-lines-fill"></i>
+                             <span>User</span>
+                         </a>
+                         <ul
+                             class="submenu {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
+                             <li class="submenu-item {{ activeClass('admin.user.index') }}">
+                                 <a href="{{ route('admin.user.index') }}">User</a>
+                             </li>
+                             <li class="submenu-item {{ activeClass('admin.role-permission.index') }}">
+                                 <a href="{{ route('admin.role-permission.index') }}">Role & Permission</a>
+                             </li>
+                         </ul>
+                     </li>
+                 @endrole
              </ul>
          </div>
      </div>

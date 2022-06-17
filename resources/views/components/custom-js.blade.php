@@ -14,17 +14,12 @@
                  </h5>
              </div>
              <div class="modal-footer">
-                 <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
-                     <i class="bx bx-x d-block d-sm-none"></i>
-                     <span class="d-none d-sm-block">Batal</span>
+                 <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">Batal
                  </button>
                  <form action="{{ route('auth.logout') }}">
                      @csrf
                      @method('delete')
-                     <button type="button" onclick="logout(this.form)" class="btn btn-primary ml-1"
-                         data-bs-dismiss="modal">
-                         <i class="bx bx-check d-block d-sm-none"></i>
-                         <span class="d-none d-sm-block">Ya, Logout</span>
+                     <button type="button" onclick="logout(this.form)" class="btn btn-primary ml-1">Ya, Logout
                      </button>
                  </form>
              </div>

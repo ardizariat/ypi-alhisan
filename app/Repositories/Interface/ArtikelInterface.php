@@ -8,6 +8,8 @@ interface ArtikelInterface
 
     public function artikelAdmin();
 
+    public function artikelAuthor($userId);
+
     public function artikelDetail($slug);
 
     public function kategoriArtikel();

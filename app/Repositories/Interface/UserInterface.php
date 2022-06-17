@@ -7,6 +7,7 @@ interface UserInterface
     public function userAdmin();
     public function storeUser($request);
     public function updateUser($user, $request);
+    public function deleteUser($user);
 
     public function roleUsers();
     public function findRole($id);

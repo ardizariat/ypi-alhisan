@@ -69,7 +69,6 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <select name="kategori_id" class="choices form-select">
-                                                        <option disabled selected>Pilih kategori</option>
                                                         @foreach ($data['kategori'] as $item)
                                                             <option value="{{ $item->id }}">{{ $item->nama }}
                                                             </option>
@@ -83,7 +82,6 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <select name="status" class="choices form-select">
-                                                        <option disabled selected>Pilih status artikel</option>
                                                         @foreach ($data['status'] as $item)
                                                             <option value="{{ $item }}">{{ $item }}
                                                             </option>

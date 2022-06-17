@@ -104,6 +104,13 @@
                 fetchData(page, q)
             }
 
+            $(document).on('click', '.pagination-link a', function(e) {
+                e.preventDefault()
+                let page = $(this).attr('href').split('page=')[1],
+                    q = $('input[name=search]').val()
+                fetchData(page, q)
+            })
+
             // let pagination = document.querySelector('.pagination-link')
             // let links = pagination.querySelectorAll('a')
 
@@ -123,12 +130,6 @@
             //         q = document.getElementsByName('search')[0].value
             //     fetchData(page, q)
             // })
-            $(document).on('click', '.pagination-link a', function(e) {
-                e.preventDefault()
-                let page = $(this).attr('href').split('page=')[1],
-                    q = $('input[name=search]').val()
-                fetchData(page, q)
-            })
         </script>
     </x-slot>
 

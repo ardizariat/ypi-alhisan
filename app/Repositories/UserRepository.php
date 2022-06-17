@@ -68,8 +68,8 @@ class UserRepository implements UserInterface
 
             $role = $request->roles;
 
-            $user->update($request);
-            $user->profile->update($request);
+            $user->update($request->all());
+            $user->profile->update($request->all());
             if ($request->has('roles')) {
                 $user->syncRoles([$role]);
             }
@@ -79,6 +79,34 @@ class UserRepository implements UserInterface
                 'status_code' => 200,
                 'status' => 'success',
                 'message' => 'Data berhasil diupdate',
+                'url' => route('admin.user.index')
+            ];
+
+            return $response;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = [
+                'status_code' => 400,
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ];
+
+            return $response;
+        }
+    }
+
+    public function deleteUser($user)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user->delete();
+
+            DB::commit();
+            $response = [
+                'status_code' => 200,
+                'status' => 'success',
+                'message' => 'Data berhasil dihapus',
                 'url' => route('admin.user.index')
             ];
 

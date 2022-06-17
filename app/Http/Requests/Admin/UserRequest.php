@@ -29,12 +29,11 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            // 'roles' => 'required',
+            'roles' => 'required',
         ];
-
-        if ($this->method() == 'PUT') {
-            $rules['username'] = 'unique:users,username,' . $user;
-            $rules['email'] = 'unique:users,email,' . $user;
+        if ($this->method() === 'PUT') {
+            $rules['username'] = 'unique:users,username,' . $user->id;
+            $rules['email'] = 'unique:users,email,' . $user->id;
         }
 
         return $rules;

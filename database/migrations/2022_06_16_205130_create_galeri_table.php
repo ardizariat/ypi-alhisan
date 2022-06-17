@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('galeri', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
-            $table->unsignedBigInteger('kategori_id');
+            $table->string('filename')->nullable();
+            $table->unsignedBigInteger('kategori_id')->nullable();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('kategori_id')->references('id')

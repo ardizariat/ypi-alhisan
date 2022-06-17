@@ -77,7 +77,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <select name="roles[]" multiple="multiple"
-                                                        class="choices form-select">
+                                                        class="multiple-remove choices form-select">
                                                         @foreach ($data['roles'] as $item)
                                                             <option value="{{ $item->id }}">{{ $item->name }}
                                                             </option>

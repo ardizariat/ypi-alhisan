@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ArtikelRequest;
 use App\Models\Artikel;
 use App\Repositories\Interface\ArtikelInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Share;
@@ -25,24 +26,43 @@ class ArtikelController extends Controller
     public function index(Request $request)
     {
         $data['title'] = 'Artikel';
-        if ($request->ajax()) {
-            $q = $request->get('q');
+        if (Auth::user()->hasRole('superAdmin')) {
+            if ($request->ajax()) {
+                $q = $request->get('q');
 
-            $data['artikel'] = $this->artikelRepository->artikelAdmin()
-                ->when(
-                    $q ?? false,
-                    fn ($query) =>
-                    $query->where('a.judul', 'like', '%' . $q . '%')
-                )
+                $data['artikel'] = $this->artikelRepository->artikelAdmin()
+                    ->when(
+                        $q ?? false,
+                        fn ($query) =>
+                        $query->where('a.judul', 'like', '%' . $q . '%')
+                    )
+                    ->paginate($this->perPage);
+                return view('admin.artikel.fetch', compact('data'))->render();
+            }
+
+            $data['artikel'] = $this->artikelRepository
+                ->artikelAdmin()
                 ->paginate($this->perPage);
-            return view('admin.artikel.fetch', compact('data'))->render();
-        }
+            return view('admin.artikel.index', compact('data'));
+        } else {
+            if ($request->ajax()) {
+                $q = $request->get('q');
 
-        // Get artikel
-        $data['artikel'] = $this->artikelRepository
-            ->artikelAdmin()
-            ->paginate($this->perPage);
-        return view('admin.artikel.index', compact('data'));
+                $data['artikel'] = $this->artikelRepository->artikelAuthor(auth()->id())
+                    ->when(
+                        $q ?? false,
+                        fn ($query) =>
+                        $query->where('a.judul', 'like', '%' . $q . '%')
+                    )
+                    ->paginate($this->perPage);
+                return view('admin.artikel.fetch', compact('data'))->render();
+            }
+
+            $data['artikel'] = $this->artikelRepository
+                ->artikelAuthor(auth()->id())
+                ->paginate($this->perPage);
+            return view('admin.artikel.index', compact('data'));
+        }
     }
 
     public function create()

@@ -25,13 +25,12 @@ class UserController extends Controller
         $data['title'] = 'User';
         if ($request->ajax()) {
             $q = $request->get('q');
-            $data['user'] = $this->userRepository->userAdmin()
+            $data['data'] = $this->userRepository->userAdmin()
                 ->when(
                     $q ?? false,
                     fn ($query) =>
                     $query->where('u.name', 'like', '%' . $q . '%')
                         ->orWhere('u.email', 'like', '%' . $q . '%')
-                        ->orWhere('r.name', 'like', '%' . $q . '%')
                 )
                 ->paginate($this->perPage);
             $data['user'] = $this->with($data['data']);
@@ -87,9 +86,23 @@ class UserController extends Controller
         return view('admin.user.user.edit', compact('data'));
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(User $user, UserRequest $request)
     {
         $req = $this->userRepository->updateUser($user, $request);
+        if ($req['status'] == 'success') {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        } else {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        }
+    }
+
+    public function delete(User $user)
+    {
+        $req = $this->userRepository->deleteUser($user);
         if ($req['status'] == 'success') {
             return response()->json([
                 'data' => $req

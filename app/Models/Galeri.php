@@ -10,7 +10,8 @@ class Galeri extends Model
     use HasFactory;
     protected $table = 'galeri',
         $fillable = [
-            'image',
+            'filename',
             'kategori_id',
+            'keterangan',
         ];
 }

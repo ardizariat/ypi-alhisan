@@ -109,5 +109,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'store')->name('store');
         Route::get('/{user}/edit', 'edit')->name('edit');
         Route::put('/{user}', 'update')->name('update');
+        Route::delete('/{user}', 'delete')->name('delete');
+    });
+
+    Route::controller(PosterDakwahController::class)->prefix('poster-dakwah')->name('poster-dakwah.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{galeri}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::delete('/{galeri}', 'delete')->name('delete');
     });
 });

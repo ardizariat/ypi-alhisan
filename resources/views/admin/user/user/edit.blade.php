@@ -78,7 +78,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <select name="roles[]" multiple="multiple"
-                                                        class="choices form-select">
+                                                        class="multiple-remove choices form-select">
                                                         @foreach ($data['roles'] as $role)
                                                             <option
                                                                 {{ $data['data']->getRoleNames()[0] == $role->name ? 'selected' : '' }}

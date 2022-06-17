@@ -28,9 +28,9 @@
                             data-bs-placement="top" data-bs-original-title="Ubah" class="btn btn-outline-success">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <button onclick="hapus(`{{ route('admin.kas-keluar.delete', $item->id) }}`)"
-                            data-bs-toggle="tooltip" title="hapus" data-bs-placement="top"
-                            data-bs-original-title="Hapus" class="btn btn-outline-danger">
+                        <button onclick="hapus(`{{ route('admin.user.delete', $item->id) }}`)" data-bs-toggle="tooltip"
+                            title="hapus" data-bs-placement="top" data-bs-original-title="Hapus"
+                            class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>

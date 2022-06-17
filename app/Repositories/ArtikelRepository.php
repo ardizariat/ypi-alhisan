@@ -34,6 +34,18 @@ class ArtikelRepository implements ArtikelInterface
             ->orderByDesc('a.dipublikasi');
     }
 
+    public function artikelAuthor($userId)
+    {
+        return DB::table('artikel as a')
+            ->join('kategori as k', 'k.id', '=', 'a.kategori_id')
+            ->join('users as u', 'u.id', '=', 'a.user_id')
+            ->where('a.user_id', $userId)
+            ->selectRaw('
+            a.id, u.name as penulis, a.judul, a.konten, k.nama as kategori, a.dipublikasi, a.slug, a.created_at as dibuat, a.status, a.thumbnail
+        ')
+            ->orderByDesc('a.created_at');
+    }
+
     public function artikelDetail($slug)
     {
         $artikel = DB::table('artikel as a')
@@ -156,7 +168,11 @@ class ArtikelRepository implements ArtikelInterface
     {
         try {
             DB::beginTransaction();
-
+            if ($artikel->thumbnail) {
+                $thumbnailOld = $artikel->thumbnail;
+                if ($thumbnailOld)
+                    Storage::delete('artikel/' . $thumbnailOld);
+            }
             $artikel->delete();
 
             DB::commit();
