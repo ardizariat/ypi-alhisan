@@ -33,6 +33,10 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
+                                <h5>Tentang Kami</h5>
+                                <p>{!! $data['data']->tentang !!}</p>
+                            </li>
+                            <li class="list-group-item">
                                 <h5>Sejarah</h5>
                                 <p>{!! $data['data']->sejarah !!}</p>
                             </li>

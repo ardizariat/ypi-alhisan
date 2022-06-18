@@ -24,6 +24,15 @@ class PengurusYayasanRepository implements PengurusYayasanInterface
         return $pengurus;
     }
 
+    public function daftarPengurusYayasanAdmin()
+    {
+        return DB::table('struktur_organisasi as so')
+            ->selectRaw('py.id, py.nama, b.nama as bagian, py.status')
+            ->join('pengurus_yayasan as py', 'so.pengurus_yayasan_id', '=', 'py.id')
+            ->join('bagian as b', 'b.id', '=', 'so.bagian_id')
+            ->orderBy('py.nama');
+    }
+
     public function strukturOrganisasi($request = '')
     {
         $strukturOrganisasi = DB::table('struktur_organisasi as so')

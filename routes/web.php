@@ -14,5 +14,7 @@ Route::controller(AppController::class)->group(function () {
     Route::get('/galeri', 'galeri')->name('galeri');
     Route::get('/artikel', 'artikel')->name('artikel');
     Route::get('/kalimat-hikmah', 'kalimatHikmah')->name('kalimat-hikmah');
+    Route::get('/poster-dakwah', 'posterDakwah')->name('poster-dakwah');
+    Route::get('/poster-dakwah/{galeri}', 'posterDakwahDetail')->name('poster-dakwah.detail');
     Route::get('/artikel/{artikel:slug}', 'artikelDetail')->name('artikel-detail');
 });

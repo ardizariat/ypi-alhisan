@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PosterDakwahController extends Controller
 {
-    public $perPage = 1;
+    public $perPage = 16;
 
     protected $galeriRepository;
 
@@ -33,7 +33,6 @@ class PosterDakwahController extends Controller
             return view('admin.galeri.posterDakwah.fetch', compact('data'))->render();
         }
 
-        // Get kalimatHikmah
         $data['posterDakwah'] = $this->galeriRepository->posterDakwahAdmin()
             ->paginate($this->perPage);
 

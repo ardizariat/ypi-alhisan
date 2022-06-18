@@ -20,6 +20,7 @@ class Alhisan extends Model
             'misi',
             'tujuan',
             'alamat',
+            'tentang',
             'sejarah',
             'ig',
             'fb',

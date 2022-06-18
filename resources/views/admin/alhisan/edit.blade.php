@@ -159,6 +159,16 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 col-sm-12">
+                                                <label>Tentang Kami</label>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 mt-2">
+                                                <div class="form-group">
+                                                    <div class="position-relative">
+                                                        <textarea id="tentang" class="form-control" autocomplete="off" name="tentang" rows="5">{{ $data['data']->tentang }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
                                                 <label>Visi</label>
                                             </div>
                                             <div class="col-md-12 col-sm-12 mt-2">

@@ -20,12 +20,19 @@ class GaleriRepository implements GaleriInterface
             ->orderByDesc('g.created_at');
     }
 
+    public function posterDakwahApp()
+    {
+        return DB::table('galeri as g')
+            ->selectRaw('g.*')
+            ->where('g.kategori_id', $this->kategoriPosterDakwah)
+            ->orderByDesc('g.created_at');
+    }
+
     public function storePosterDakwah($request)
     {
         try {
             DB::beginTransaction();
 
-            $request->file('filename')->store('', 'google');
             $posterDakwah = new Galeri();
             $posterDakwah->keterangan = $request->keterangan;
             $posterDakwah->kategori_id = $this->kategoriPosterDakwah;

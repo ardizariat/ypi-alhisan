@@ -4,26 +4,33 @@ namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artikel;
-use App\Repositories\Interface\ArtikelInterface;
-use App\Repositories\Interface\KalimatHikmahInterface;
-use App\Repositories\Interface\PengurusYayasanInterface;
+use App\Models\Galeri;
+use App\Repositories\Interface\{
+    ArtikelInterface,
+    GaleriInterface,
+    KalimatHikmahInterface,
+    PengurusYayasanInterface
+};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
     protected $artikelRepository,
         $pengurusYayasanRepository,
-        $kalimatHikmahRepository;
+        $kalimatHikmahRepository,
+        $galeriRepository;
+
 
     public function __construct(
         ArtikelInterface $artikelRepository,
         PengurusYayasanInterface $pengurusYayasanRepository,
-        KalimatHikmahInterface $kalimatHikmahRepository
+        KalimatHikmahInterface $kalimatHikmahRepository,
+        GaleriInterface $galeriRepository
     ) {
         $this->artikelRepository = $artikelRepository;
         $this->pengurusYayasanRepository = $pengurusYayasanRepository;
         $this->kalimatHikmahRepository = $kalimatHikmahRepository;
+        $this->galeriRepository = $galeriRepository;
     }
 
     public function beranda(Request $request)
@@ -108,5 +115,44 @@ class AppController extends Controller
         $data['title'] = 'Kalimat Hikmah';
         $data['data'] = $this->kalimatHikmahRepository->kalimatHikmah();
         return view('frontend.kalimatHikmah', compact('data'));
+    }
+
+    public function posterDakwah(Request $request)
+    {
+        $perPage = 16;
+        $data['title'] = 'Poster Dakwah';
+        if ($request->ajax()) {
+            $data['data'] = $this->galeriRepository->posterDakwahApp()
+                ->paginate($perPage);
+            return view('frontend.posterDakwahFetch', compact('data'))->render();
+        }
+        $data['data'] = $this->galeriRepository->posterDakwahApp()
+            ->paginate($perPage);
+        return view('frontend.posterDakwah', compact('data'));
+    }
+
+    public function posterDakwahDetail(Galeri $galeri)
+    {
+        $path = asset('storage/posterDakwah/' . $galeri->filename);
+        $output = '
+            <div class="modal-header">
+                <h5 class="modal-title" id="galleryModalTitle">' . $galeri->keterangan . '</h5>
+            </div>
+            <div class="modal-body">
+                <div class="carousel slide carousel-fade">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100"
+                                src="' . $path . '">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        ';
+
+        echo $output;
     }
 }

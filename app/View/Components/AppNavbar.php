@@ -33,7 +33,7 @@ class AppNavbar extends Component
             'Artikel' => route('artikel'),
             'dakwah' => [
                 'Kalimat Hikmah' => route('kalimat-hikmah'),
-                'Poster Dakwah' => route('struktur-organisasi'),
+                'Poster Dakwah' => route('poster-dakwah'),
             ],
             'Galeri' => route('galeri'),
             'Kontak' => route('kontak'),

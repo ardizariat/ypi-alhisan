@@ -3,8 +3,8 @@
          <div class="sidebar-header position-relative">
              <div class="d-flex justify-content-between align-items-center">
                  <div class="logo">
-                     <a href="/"><img src="{{ asset('storage/alhisan/' . alhisan()->logo) }}" alt="Logo"
-                             srcset=""></a>
+                     <a href="/" target="_blank"><img src="{{ asset('storage/alhisan/' . alhisan()->logo) }}"
+                             alt="Logo" srcset=""></a>
                  </div>
                  <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                      <div class="form-check form-switch fs-6">
@@ -29,6 +29,12 @@
                      <a href="{{ route('admin.alhisan.index') }}" class='sidebar-link'>
                          <i class="bi bi-gear-wide-connected"></i>
                          <span>Alhisan</span>
+                     </a>
+                 </li>
+                 <li class="sidebar-item {{ activeClass('admin.pengurus-yayasan.index') }}">
+                     <a href="{{ route('admin.pengurus-yayasan.index') }}" class='sidebar-link'>
+                         <i class="bi bi-incognito"></i>
+                         <span>Pengurus Yayasan</span>
                      </a>
                  </li>
                  <li

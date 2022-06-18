@@ -10,7 +10,7 @@
         <section class="section">
             <div class="row">
                 @foreach ($data['saldoKas'] as $nama => $saldo)
-                    <div class="col-4 col-md-4 col-lg-4 col-sm-6">
+                    <div class="col-12 col-md-4 col-lg-4 col-sm-6">
                         <div class="card shadow">
                             <div class="card-body px-3 py-4-5">
                                 <div class="row">
@@ -31,7 +31,7 @@
                 @endforeach
             </div>
             <div class="row">
-                <div class="col-6 col-md-6 col-xl-6 col-sm-12">
+                <div class="col-12 col-md-6 col-xl-6 col-sm-12">
                     <div class="card shadow">
                         <div class="card-header">
                             <h4>Agenda Bulan Ini</h4>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="row">
-                <div class="col-6 col-md-6 col-xl-6 col-sm-12">
+                <div class="col-12 col-md-6 col-xl-6 col-sm-12">
                     <div class="card shadow">
                         <div class="card-header">
                             <h4>Kas Masuk Bulan Ini</h4>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-xl-6 col-sm-12">
+                <div class="col-12 col-md-6 col-xl-6 col-sm-12">
                     <div class="card shadow">
                         <div class="card-header">
                             <h4>Kas Keluar Bulan Ini</h4>

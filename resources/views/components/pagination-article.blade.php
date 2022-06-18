@@ -1,11 +1,3 @@
-{{-- <div class="blog-pagination mb-3">
-    <ul class="justify-content-center">
-        <li><a href="#">1</a></li>
-        <li class="active"><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-    </ul>
-</div> --}}
-
 @if ($paginator->hasPages())
     <div class="blog-pagination mb-3">
         <ul class="justify-content-center pagination-link">

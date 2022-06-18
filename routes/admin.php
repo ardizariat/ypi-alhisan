@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Kas\{
 use App\Http\Controllers\Admin\RapatYayasan\RapatYayasanController;
 use App\Http\Controllers\Admin\User\RoleAndPermissionController;
 use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Admin\PengurusYayasan\PengurusYayasanController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
@@ -129,5 +130,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'store')->name('store');
         Route::put('/{agenda}', 'update')->name('update');
         Route::delete('/{agenda}', 'delete')->name('delete');
+    });
+
+    Route::controller(PengurusYayasanController::class)->prefix('pengurus-yayasan')->name('pengurus-yayasan.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{pengurusYayasan}', 'show')->name('show');
+        Route::get('/{pengurusYayasan}/ubah', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{pengurusYayasan}', 'update')->name('update');
+        Route::delete('/{pengurusYayasan}', 'delete')->name('delete');
     });
 });

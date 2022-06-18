@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('telegram')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('no_telpon')->nullable();
+            $table->longText('tentang')->nullable();
             $table->longText('visi')->nullable();
             $table->longText('misi')->nullable();
             $table->longText('tujuan')->nullable();

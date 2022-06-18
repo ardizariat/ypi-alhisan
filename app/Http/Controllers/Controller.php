@@ -27,4 +27,9 @@ class Controller extends BaseController
     {
         return DB::table('permissions as p')->selectRaw('p.id, p.name')->get();
     }
+
+    public function bagian()
+    {
+        return DB::table('bagian as b')->selectRaw('b.id, b.nama')->get();
+    }
 }
