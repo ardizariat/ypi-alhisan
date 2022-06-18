@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Repositories\Interface\UserInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -23,6 +24,13 @@ class UserRepository implements UserInterface
             u.id, u.name, u.username, u.email
         ')
             ->orderBy('u.name');
+    }
+
+    public function aktifitasUser()
+    {
+        return DB::table('aktifitas_user as au')
+            ->selectRaw('au.*')
+            ->orderByDesc('au.created_at');
     }
 
     public function storeUser($request)
@@ -108,6 +116,59 @@ class UserRepository implements UserInterface
                 'status' => 'success',
                 'message' => 'Data berhasil dihapus',
                 'url' => route('admin.user.index')
+            ];
+
+            return $response;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = [
+                'status_code' => 400,
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ];
+
+            return $response;
+        }
+    }
+
+    public function profilSaya($userId)
+    {
+        return DB::table('users as u')
+            ->join('profiles as p', 'p.user_id', '=', 'u.id')
+            ->selectRaw('u.id, u.name, u.username, u.email, p.nik, p.tempat_lahir, p.tanggal_lahir, p.jenis_kelamin, p.foto, p.no_hp, p.alamat')
+            ->where('u.id', $userId)
+            ->where('p.user_id', $userId)
+            ->first();
+    }
+
+    public function updateProfilUser($user, $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user->update($request->all());
+            $profil = Profile::where('user_id', $user->id)->first();
+            $profil->nik = $request->nik;
+            $profil->tempat_lahir = $request->tempat_lahir;
+            $profil->tanggal_lahir = $request->tanggal_lahir;
+            $profil->jenis_kelamin = $request->jenis_kelamin;
+            $profil->no_hp = $request->no_hp;
+            $profil->alamat = $request->alamat;
+            if ($request->hasFile('foto')) {
+                $fotoOld = $profil->foto;
+                if ($fotoOld)
+                    Storage::delete('user/' . $fotoOld);
+                $filename = uploadFile($request->file('foto'), 'user/');
+                $profil->foto = $filename;
+            }
+            $profil->update();
+
+            DB::commit();
+            $response = [
+                'status_code' => 200,
+                'status' => 'success',
+                'message' => 'Data berhasil diupdate',
+                'url' => route('admin.profil-saya', $user->username)
             ];
 
             return $response;

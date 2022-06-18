@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('nama');
+            $table->string('foto')->nullable();
             $table->string('status')->default('aktif');
             $table->timestamps();
 

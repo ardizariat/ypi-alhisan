@@ -21,9 +21,11 @@
                             class="btn btn-outline-success">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a target="_blank" href="{{ route('admin.pengurus-yayasan.show', $item->id) }}"
+                        <button type="button"
+                            onclick="showModal(`{{ route('admin.pengurus-yayasan.show', $item->id) }}`)"
                             data-bs-toggle="tooltip" title="detail" data-bs-placement="top"
-                            data-bs-original-title="detail" class="btn btn-outline-dark"><i class="bi bi-eye"></i></a>
+                            data-bs-original-title="detail" class="btn btn-outline-dark"><i
+                                class="bi bi-eye"></i></button>
                         <button onclick="hapus(`{{ route('admin.pengurus-yayasan.delete', $item->id) }}`)"
                             data-bs-toggle="tooltip" title="hapus" data-bs-placement="top"
                             data-bs-original-title="Hapus" class="btn btn-outline-danger">

@@ -17,7 +17,8 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="index.html"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo"></a>
+                        <a href="/"><img src="{{ asset('storage/alhisan/' . alhisan()->logo) }}"
+                                alt="Alhisan"></a>
                     </div>
                     <h1 class="auth-title">Login</h1>
                     <form method="POST" action="{{ route('auth.login.store') }}">

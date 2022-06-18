@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Agenda\AgendaController;
 use App\Http\Controllers\Admin\Alhisan\AlhisanController;
 use App\Http\Controllers\Admin\Artikel\ArtikelController;
+use App\Http\Controllers\Admin\Artikel\KategoriArtikelController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Galeri\PosterDakwahController;
 use App\Http\Controllers\Admin\KalimatHikmah\KalimatHikmahController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Admin\RapatYayasan\RapatYayasanController;
 use App\Http\Controllers\Admin\User\RoleAndPermissionController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\PengurusYayasan\PengurusYayasanController;
+use App\Http\Controllers\Admin\User\AktifitasUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
@@ -31,6 +33,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'store')->name('store');
         Route::put('/{artikel}', 'update')->name('update');
         Route::delete('/{artikel}', 'delete')->name('delete');
+    });
+
+    Route::controller(KategoriArtikelController::class)->prefix('kategori-artikel')->name('kategori-artikel.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{kategori}/ubah', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{kategori}', 'update')->name('update');
+        Route::delete('/{kategori}', 'delete')->name('delete');
     });
 
     Route::controller(KalimatHikmahController::class)->prefix('kalimat-hikmah')->name('kalimat-hikmah.')->group(function () {
@@ -114,6 +125,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{user}', 'delete')->name('delete');
     });
 
+    Route::controller(AktifitasUserController::class)->prefix('aktifitas-user')->name('aktifitas-user.')->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
     Route::controller(PosterDakwahController::class)->prefix('poster-dakwah')->name('poster-dakwah.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/tambah', 'create')->name('create');
@@ -140,5 +155,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'store')->name('store');
         Route::put('/{pengurusYayasan}', 'update')->name('update');
         Route::delete('/{pengurusYayasan}', 'delete')->name('delete');
+    });
+
+    Route::controller(UserController::class)->prefix('profil-saya')->group(function () {
+        Route::get('/{user:username}', 'profil')->name('profil-saya');
+        Route::get('/{user}/edit-profil', 'editProfil')->name('edit-profil');
+        Route::put('/{user}/update-profil', 'updateProfil')->name('update-profil');
+        Route::put('/{user}/update-password', 'updatePassword')->name('update-password');
     });
 });

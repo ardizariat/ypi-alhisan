@@ -69,6 +69,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <select name="kategori_id" class="choices form-select">
+                                                        <option value="" selected disabled>Pilih data</option>
                                                         @foreach ($data['kategori'] as $item)
                                                             <option value="{{ $item->id }}">{{ $item->nama }}
                                                             </option>
@@ -82,6 +83,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <select name="status" class="choices form-select">
+                                                        <option value="" selected disabled>Pilih data</option>
                                                         @foreach ($data['status'] as $item)
                                                             <option value="{{ $item }}">{{ $item }}
                                                             </option>
@@ -160,19 +162,6 @@
                         alertError()
                     })
             }
-
-            // const save = (data) => {
-            //     event.preventDefault()
-            //     for (instance in CKEDITOR.instances) {
-            //         CKEDITOR.instances[instance].updateElement()
-            //     }
-            //     sendDataWithFormData(data).then((result) => {
-            //         alertSuccess(result.message)
-            //         pindahHalaman(result.url, 2000)
-            //     }).catch((err) => {
-            //         alertError()
-            //     })
-            // }
         </script>
     </x-slot>
 </x-admin-app-layout>

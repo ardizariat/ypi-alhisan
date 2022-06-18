@@ -57,13 +57,6 @@
                                 <ul class="cats">
                                     <li><a href="#">{!! $data['data']->kategori !!}</a></li>
                                 </ul>
-
-                                <i class="bi bi-tags"></i>
-                                <ul class="tags">
-                                    <li><a href="#">Creative</a></li>
-                                    <li><a href="#">Tips</a></li>
-                                    <li><a href="#">Marketing</a></li>
-                                </ul>
                             </div>
 
                         </article>

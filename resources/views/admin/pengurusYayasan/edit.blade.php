@@ -18,7 +18,8 @@
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.artikel.index') }}">Artikel</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.pengurus-yayasan.index') }}">Pengurus
+                                    Yayasan</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $data['title'] }}</li>
                         </ol>
                     </nav>
@@ -36,82 +37,67 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <form class="form form-horizontal" enctype="multipart/form-data"
-                                    action="{{ route('admin.artikel.update', $data['data']->id) }}">
+                                    action="{{ route('admin.pengurus-yayasan.update', $data['data']->id) }}">
                                     @method('put')
                                     @csrf
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label>Judul</label>
+                                                <label>Nama</label>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <div class="position-relative">
-                                                        <input name="judul" autocomplete="off"
-                                                            value="{{ $data['data']->judul }}" type="text"
-                                                            class="form-control">
+                                                        <input name="nama" value="{{ $data['data']->nama }}"
+                                                            autocomplete="off" type="text" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label>Thumbnail</label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <div class="position-relative">
-                                                        <input name="thumbnail" id="thumbnail" type="file"
-                                                            class="filepond image-preview-filepond">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>Email</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <div class="position-relative">
+                                                            <input value="{{ $data['data']->email }}" name="email"
+                                                                autocomplete="off" type="email" class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label>Kategori</label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <select name="kategori_id" class="choices form-select">
-                                                        <option disabled selected>Pilih kategori</option>
-                                                        @foreach ($data['kategori'] as $item)
-                                                            <option
-                                                                {{ $data['data']->kategori_id === $item->id ? 'selected' : '' }}
-                                                                value="{{ $item->id }}">{{ $item->nama }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="col-md-4">
+                                                    <label>Foto</label>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label>Status</label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <select name="status" class="choices form-select">
-                                                        <option disabled selected>Pilih status artikel</option>
-                                                        @foreach ($data['status'] as $item)
-                                                            <option
-                                                                {{ $data['data']->status === $item ? 'selected' : '' }}
-                                                                value="{{ $item }}">{{ $item }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12">
-                                                <label>Konten</label>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 mt-2">
-                                                <div class="form-group">
-                                                    <div class="position-relative">
-                                                        <textarea id="konten" class="form-control" autocomplete="off" name="konten" rows="5">{{ $data['data']->konten }}</textarea>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <div class="position-relative">
+                                                            <input name="foto" id="foto" type="file"
+                                                                class="filepond image-preview-filepond">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 mt-3 d-flex justify-content-center">
-                                                <button onclick="save(this.form, 'post')" type="submit"
-                                                    class="btn btn-success me-1 mb-1 rounded-pill">Update</button>
+                                                <div class="col-md-4">
+                                                    <label>Bagian</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <select name="bagian_id" class="choices form-select">
+                                                            @foreach ($data['bagian'] as $item)
+                                                                <option
+                                                                    {{ $data['data']->bagian_id == $item->id ? 'selected' : '' }}
+                                                                    value="{{ $item->id }}">
+                                                                    {{ $item->nama }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-3 d-flex justify-content-center">
+                                                    <button onclick="save(this.form, 'post')" type="submit"
+                                                        class="btn btn-success me-1 mb-1 rounded-pill">Update</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -127,24 +113,19 @@
         <script src="{{ asset('assets/vendors/ckeditor/ckeditor.js') }}"></script>
         <script src="{{ asset('assets/js/extensions/form-element-select.js') }}"></script>
         <script>
-            CKEDITOR.replace('konten')
-
             FilePond.registerPlugin(FilePondPluginImagePreview)
             let pond = FilePond.create(
-                document.querySelector('#thumbnail'), {
+                document.querySelector('#foto'), {
                     instantUpload: false,
                     allowProcess: false
                 });
 
             const save = (originalForm) => {
                 event.preventDefault()
-                for (instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement()
-                }
                 let data = new FormData(originalForm)
                 let pondFiles = pond.getFiles();
                 for (let i = 0; i < pondFiles.length; i++) {
-                    data.append('thumbnail', pondFiles[i].file);
+                    data.append('foto', pondFiles[i].file);
                 }
                 $.post({
                         url: $(originalForm).attr('action'),
@@ -167,19 +148,6 @@
                         alertError()
                     })
             }
-
-            // const save = (data) => {
-            //     event.preventDefault()
-            //     for (instance in CKEDITOR.instances) {
-            //         CKEDITOR.instances[instance].updateElement()
-            //     }
-            //     sendDataWithFormData(data).then((result) => {
-            //         alertSuccess(result.message)
-            //         pindahHalaman(result.url, 2000)
-            //     }).catch((err) => {
-            //         alertError()
-            //     })
-            // }
         </script>
     </x-slot>
 </x-admin-app-layout>

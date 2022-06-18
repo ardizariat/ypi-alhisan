@@ -167,19 +167,6 @@
                         alertError()
                     })
             }
-
-            // const save = (data) => {
-            //     event.preventDefault()
-            //     for (instance in CKEDITOR.instances) {
-            //         CKEDITOR.instances[instance].updateElement()
-            //     }
-            //     sendDataWithFormData(data).then((result) => {
-            //         alertSuccess(result.message)
-            //         pindahHalaman(result.url, 2000)
-            //     }).catch((err) => {
-            //         alertError()
-            //     })
-            // }
         </script>
     </x-slot>
 </x-admin-app-layout>

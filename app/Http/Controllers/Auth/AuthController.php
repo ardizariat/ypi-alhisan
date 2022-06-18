@@ -24,12 +24,17 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
+        activity('login');
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     public function logout(Request $request)
     {
+        activity('logout');
+
         $user = $request->user();
+
         $user->tokens()->delete();
 
         Auth::guard('web')->logout();

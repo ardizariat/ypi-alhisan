@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\ActivityLog;
-use App\Models\KamarPasien;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -160,4 +158,17 @@ function saldoKas()
     $totalKasKeluar = $kasKeluar->sum('nominal');
 
     return $totalKasMasuk - $totalKasKeluar;
+}
+
+function activity(string $aktifitas)
+{
+    if (!Auth::check()) {
+        return false;
+    }
+    $user = auth()->user();
+    DB::table('aktifitas_user')->insert([
+        'nama' => $user->name,
+        'aktifitas' => $aktifitas,
+        'created_at' => tanggalJamSekarang()
+    ]);
 }

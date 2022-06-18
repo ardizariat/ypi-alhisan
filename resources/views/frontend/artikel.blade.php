@@ -18,17 +18,14 @@
 
         <!-- ======= Blog Section ======= -->
         <section id="blog" class="blog">
-            <div class="container" data-aos="fade-up">
-
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-12 col-sm-12 entries" id="konten">
-
+                    <div class="col-8 col-lg-8 col-md-8 col-sm-12 entries" id="konten">
                         @include('frontend.artikelFetch')
                         <input type="hidden" name="page" value="1" id="page-artikel" />
-
                     </div>
 
-                    <div class="col-lg-4 col-md-12 col-sm-12 entries">
+                    <div class="col-4 col-lg-4 col-md-8 col-sm-12">
                         <div class="sidebar">
                             <h3 class="sidebar-title">Search</h3>
                             <div class="sidebar-item">

@@ -24,7 +24,7 @@ class KategoriSeeder extends Seeder
             DB::table('kategori')->insert([
                 'nama' => $item[0],
                 'slug' => $item[1],
-                'kategori' => 'artikel',
+                'kategori' => $item[2],
                 'status' => 'aktif',
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString(),

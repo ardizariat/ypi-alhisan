@@ -9,16 +9,17 @@
         </div>
 
         <section class="section">
-            <div class="row">
-                <div class="col-12 col-md-12 col-lg-12">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-8 col-lg-8 col-sm-12">
                     <div class="shadow card">
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-4 col-lg-4 col-sm-12">
                                         <div class="form-group position-relative has-icon-right">
-                                            <a href="{{ route('admin.pengurus-yayasan.create') }}"
-                                                class="btn icon icon-left btn-outline-dark">Tambah</a>
+                                            <button type="button"
+                                                onclick="showModal(`{{ route('admin.kategori-artikel.create') }}`)"
+                                                class="btn icon icon-left btn-outline-dark">Tambah</button>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-lg-4 col-sm-12">
@@ -32,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive" id="data">
-                                    @include('admin.pengurusYayasan.fetch')
+                                    @include('admin.kategori.artikel.fetch')
                                 </div>
                             </div>
                         </div>
@@ -54,24 +55,8 @@
                 node.innerHTML = template
             }
 
-            const showModal = (url) => {
-                event.preventDefault()
-                fetch(url)
-                    .then(function(res) {
-                        return res.text()
-                    })
-                    .then(function(html) {
-                        let modalContent = document.getElementById('modal-content')
-                        renderHtml(html, modalContent)
-                    })
-                    .catch(err => {
-                        alertError(err)
-                    })
-                $(modal).modal('show')
-            }
-
             const fetchData = async (page = '', q = '') => {
-                fetch(`/admin/pengurus-yayasan?page=${page}&q=${q}`, {
+                fetch(`/admin/kategori-artikel?page=${page}&q=${q}`, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         },
@@ -105,27 +90,29 @@
                     q = $('input[name=search]').val()
                 fetchData(page, q)
             })
+            const showModal = (url) => {
+                fetch(url)
+                    .then(function(res) {
+                        return res.text()
+                    })
+                    .then(function(html) {
+                        let modalContent = document.getElementById('modal-content')
+                        renderHtml(html, modalContent)
+                    })
+                    .catch(err => {
+                        alertError(err)
+                    })
+                $(modal).modal('show')
+            }
 
-            const hapus = (url) => {
+            const save = (data) => {
                 event.preventDefault()
-                Swal.fire({
-                    title: "Apakah anda yakin menghapus data ini?",
-                    text: "Data yang sudah dihapus tidak dapat dikembalikan lagi!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        deleteData(url).then((result) => {
-                            let res = result.data
-                            alertSuccess(res.message)
-                            pindahHalaman(res.url, 1000)
-                        }).catch((err) => {
-                            alertError()
-                        })
-                    }
+                sendData(data).then((response) => {
+                    let res = response.data
+                    alertSuccess(res.message)
+                    pindahHalaman(res.url, 2000)
+                }).catch((err) => {
+                    alertError()
                 })
             }
         </script>

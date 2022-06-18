@@ -4,7 +4,7 @@
              <div class="d-flex justify-content-between align-items-center">
                  <div class="logo">
                      <a href="/" target="_blank"><img src="{{ asset('storage/alhisan/' . alhisan()->logo) }}"
-                             alt="Logo" srcset=""></a>
+                             alt="Alhisan" srcset=""></a>
                  </div>
                  <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                      <div class="form-check form-switch fs-6">
@@ -37,12 +37,23 @@
                          <span>Pengurus Yayasan</span>
                      </a>
                  </li>
+
                  <li
-                     class="sidebar-item {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }} {{ activeClass('admin.artikel.edit') }} ">
-                     <a href="{{ route('admin.artikel.index') }}" class='sidebar-link'>
+                     class="sidebar-item has-sub {{ activeClass('admin.kategori-artikel.index') }} {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }} {{ activeClass('admin.artikel.edit') }}">
+                     <a href="#" class='sidebar-link'>
                          <i class="bi bi-pen"></i>
                          <span>Artikel</span>
                      </a>
+                     <ul
+                         class="submenu {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }} {{ activeClass('admin.artikel.edit') }} {{ activeClass('admin.kategori-artikel.index') }}">
+                         <li
+                             class="submenu-item {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }} {{ activeClass('admin.artikel.edit') }}">
+                             <a href="{{ route('admin.artikel.index') }}">Artikel</a>
+                         </li>
+                         <li class="submenu-item {{ activeClass('admin.kategori-artikel.index') }}">
+                             <a href="{{ route('admin.kategori-artikel.index') }}">Kategori</a>
+                         </li>
+                     </ul>
                  </li>
                  <li class="sidebar-item {{ activeClass('admin.kalimat-hikmah.index') }}">
                      <a href="{{ route('admin.kalimat-hikmah.index') }}" class='sidebar-link'>
@@ -50,7 +61,6 @@
                          <span>Kalimat Hikmah</span>
                      </a>
                  </li>
-
                  <li class="sidebar-item has-sub {{ activeClass('admin.poster-dakwah.index') }}">
                      <a href="#" class='sidebar-link'>
                          <i class="bi bi-image-fill"></i>
@@ -93,18 +103,21 @@
                  </li>
                  @role('superAdmin')
                      <li
-                         class="sidebar-item has-sub {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
+                         class="sidebar-item has-sub {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }} {{ activeClass('admin.aktifitas-user.index') }}">
                          <a href="#" class='sidebar-link'>
                              <i class="bi bi-person-lines-fill"></i>
                              <span>User</span>
                          </a>
                          <ul
-                             class="submenu {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }}">
+                             class="submenu {{ activeClass('admin.user.index') }} {{ activeClass('admin.role-permission.index') }} {{ activeClass('admin.aktifitas-user.index') }}">
                              <li class="submenu-item {{ activeClass('admin.user.index') }}">
                                  <a href="{{ route('admin.user.index') }}">User</a>
                              </li>
                              <li class="submenu-item {{ activeClass('admin.role-permission.index') }}">
                                  <a href="{{ route('admin.role-permission.index') }}">Role & Permission</a>
+                             </li>
+                             <li class="submenu-item {{ activeClass('admin.aktifitas-user.index') }}">
+                                 <a href="{{ route('admin.aktifitas-user.index') }}">Aktifitas USer</a>
                              </li>
                          </ul>
                      </li>

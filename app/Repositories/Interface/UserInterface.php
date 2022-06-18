@@ -8,6 +8,9 @@ interface UserInterface
     public function storeUser($request);
     public function updateUser($user, $request);
     public function deleteUser($user);
+    public function profilSaya($userId);
+    public function updateProfilUser($user, $request);
+    public function aktifitasUser();
 
     public function roleUsers();
     public function findRole($id);

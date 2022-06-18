@@ -69,6 +69,7 @@ class ArtikelRepository implements ArtikelInterface
             ->selectRaw("COUNT(a.kategori_id) as kategori_count, k.nama, k.slug, k.id")
             ->leftJoin('artikel as a', 'a.kategori_id', '=', 'k.id')
             ->groupBy('k.nama', 'k.id')
+            ->where('k.kategori', 'artikel')
             ->get();
 
         return $kategori;

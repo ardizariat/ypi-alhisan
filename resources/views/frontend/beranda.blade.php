@@ -15,7 +15,7 @@
         <x-beranda-artikel-terbaru></x-beranda-artikel-terbaru>
 
         <!-- Kalimat Hikmah -->
-        <x-beranda-kalimat-hikmah></x-beranda-kalimat-hikmah>
+        {{-- <x-beranda-kalimat-hikmah></x-beranda-kalimat-hikmah> --}}
 
         <!-- Kontak -->
         <x-beranda-kontak></x-beranda-kontak>

@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengurusYayasan extends Model
+class AktifitasUser extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengurus_yayasan',
+    protected $table = 'aktifitas_user',
         $fillable = [
-            'user_id',
             'nama',
-            'foto',
-            'status',
+            'aktifitas'
         ];
 }

@@ -52,8 +52,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                             style="min-width: 11rem;">
-                            <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i>
+                            <li><a class="dropdown-item"
+                                    href="{{ route('admin.profil-saya', auth()->user()->username) }}"><i
+                                        class="icon-mid bi bi-person me-2"></i>
                                     Profil Saya</a></li>
+                            <li>
+                            <li><a class="dropdown-item" href="#" onclick="showModalGantiPassword()">
+                                    <i class="bi bi-lock"></i>
+                                    Ganti Password</a></li>
                             <li>
                             <li>
                                 <hr class="dropdown-divider">

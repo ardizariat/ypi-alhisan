@@ -17,12 +17,6 @@
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-4 col-lg-4 col-sm-12">
                                         <div class="form-group position-relative has-icon-right">
-                                            <a href="{{ route('admin.pengurus-yayasan.create') }}"
-                                                class="btn icon icon-left btn-outline-dark">Tambah</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
-                                        <div class="form-group position-relative has-icon-right">
                                             <input onkeyup="cari(this)" type="text" class="form-control"
                                                 placeholder="Search" autocomplete="off">
                                             <div class="form-control-icon">
@@ -32,7 +26,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive" id="data">
-                                    @include('admin.pengurusYayasan.fetch')
+                                    @include('admin.user.aktifitasUser.fetch')
                                 </div>
                             </div>
                         </div>
@@ -43,35 +37,14 @@
     </div>
 
     <x-slot name="js">
-        <x-modal>
-            <x-slot name="size">md</x-slot>
-        </x-modal>
         <script>
-            const modal = document.getElementById('modal-all-in-one')
-
             const renderHtml = (template, node) => {
                 if (!node) return
                 node.innerHTML = template
             }
 
-            const showModal = (url) => {
-                event.preventDefault()
-                fetch(url)
-                    .then(function(res) {
-                        return res.text()
-                    })
-                    .then(function(html) {
-                        let modalContent = document.getElementById('modal-content')
-                        renderHtml(html, modalContent)
-                    })
-                    .catch(err => {
-                        alertError(err)
-                    })
-                $(modal).modal('show')
-            }
-
             const fetchData = async (page = '', q = '') => {
-                fetch(`/admin/pengurus-yayasan?page=${page}&q=${q}`, {
+                fetch(`/admin/aktifitas-user?page=${page}&q=${q}`, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         },
@@ -105,29 +78,6 @@
                     q = $('input[name=search]').val()
                 fetchData(page, q)
             })
-
-            const hapus = (url) => {
-                event.preventDefault()
-                Swal.fire({
-                    title: "Apakah anda yakin menghapus data ini?",
-                    text: "Data yang sudah dihapus tidak dapat dikembalikan lagi!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        deleteData(url).then((result) => {
-                            let res = result.data
-                            alertSuccess(res.message)
-                            pindahHalaman(res.url, 1000)
-                        }).catch((err) => {
-                            alertError()
-                        })
-                    }
-                })
-            }
         </script>
     </x-slot>
 </x-admin-app-layout>

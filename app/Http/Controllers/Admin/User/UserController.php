@@ -7,7 +7,9 @@ use App\Http\Requests\Admin\UserRequest;
 use App\Models\{User, Profile};
 use App\Repositories\Interface\UserInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -111,6 +113,77 @@ class UserController extends Controller
             return response()->json([
                 'data' => $req
             ], $req['status_code']);
+        }
+    }
+
+    public function profil(User $user)
+    {
+        $data['title'] = 'Profil Saya';
+        $data['data'] = $this->userRepository->profilSaya($user->id);
+        return view('admin.user.user.profil', compact('data'));
+    }
+
+    public function editProfil(User $user)
+    {
+        $data['title'] = 'Ubah Profil Saya';
+        $data['data'] = $this->userRepository->profilSaya($user->id);
+        return view('admin.user.user.editProfil', compact('data'));
+    }
+
+    public function updateProfil(User $user, Request $request)
+    {
+        $req = $this->userRepository->updateProfilUser($user, $request);
+        if ($req['status'] == 'success') {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        } else {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        }
+    }
+
+    public function updatePassword(User $user, Request $request)
+    {
+        $attr = $request->all();
+        $request->validate([
+            'password_lama' =>
+            [
+                'required', function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, auth()->user()->password)) {
+                        $fail('Password lama salah!');
+                    }
+                },
+            ],
+            'password' => 'required|min:4|confirmed'
+        ]);
+
+        $cek_password = Hash::check($attr['password_lama'], $user->password);
+        if ($cek_password) {
+            if ($attr['password'] === $attr['password_confirmation']) {
+                $user->update([
+                    'password' => Hash::make($attr['password']),
+                ]);
+
+                $user->tokens()->delete();
+
+                Auth::guard('web')->logout();
+
+                $request->session()->invalidate();
+
+                $request->session()->regenerateToken();
+
+                return response()->json([
+                    'message' => 'Ganti password berhasil diubah!, setelah ini anda akan logout silahkan login dengan password baru',
+                    'url' => route('auth.login')
+                ], 200);
+            }
+        } else {
+
+            return response()->json([
+                'message' => 'Ubah password gagal!'
+            ], 400);
         }
     }
 }

@@ -14,6 +14,7 @@ use App\Repositories\{
     GaleriRepository,
     AgendaRepository,
     DashboardRepository,
+    KategoriRepository,
 };
 use App\Repositories\Interface\{
     PengurusYayasanInterface,
@@ -26,6 +27,7 @@ use App\Repositories\Interface\{
     GaleriInterface,
     AgendaInterface,
     DashboardInterface,
+    KategoriInterface,
 };
 
 class AdminRepositoryProvider extends ServiceProvider
@@ -37,6 +39,10 @@ class AdminRepositoryProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(
+            KategoriInterface::class,
+            KategoriRepository::class
+        );
         $this->app->bind(
             DashboardInterface::class,
             DashboardRepository::class
