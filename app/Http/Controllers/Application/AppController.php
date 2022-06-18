@@ -71,7 +71,7 @@ class AppController extends Controller
 
     public function artikel(Request $request)
     {
-        $perPage = 5;
+        $perPage = 2;
         $data['title'] = 'Artikel';
 
         if ($request->ajax()) {

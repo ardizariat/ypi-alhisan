@@ -22,7 +22,6 @@
                 <div class="row">
                     <div class="col-8 col-lg-8 col-md-8 col-sm-12 entries" id="konten">
                         @include('frontend.artikelFetch')
-                        <input type="hidden" name="page" value="1" id="page-artikel" />
                     </div>
 
                     <div class="col-4 col-lg-4 col-md-8 col-sm-12">
@@ -53,7 +52,7 @@
                                         <h4><a
                                                 href="{{ route('artikel-detail', $item->slug) }}">{!! $item->judul !!}</a>
                                         </h4>
-                                        <time datetime="2020-01-01">{!! tanggal($item->dipublikasi) !!}</time>
+                                        <time>{!! tanggal($item->dipublikasi) !!}</time>
                                     </div>
                                 @endforeach
                             </div>
@@ -107,26 +106,6 @@
                     q = $('input[name=search]').val()
                 fetchData(page, q)
             })
-
-            // let pagination = document.querySelector('.pagination-link')
-            // let links = pagination.querySelectorAll('a')
-
-            // links.forEach(link => {
-            //     link.addEventListener('click', (e) => {
-            //         e.preventDefault()
-            //         let page = link.href.split("page=")[1],
-            //             q = document.getElementsByName('search')[0].value
-            //         fetchData(page, q)
-            //     })
-            // })
-
-            // let link = document.querySelector('.pagination-link a')
-            // link.addEventListener('click', (e) => {
-            //     e.preventDefault()
-            //     let page = link.href.split("page=")[1],
-            //         q = document.getElementsByName('search')[0].value
-            //     fetchData(page, q)
-            // })
         </script>
     </x-slot>
 

@@ -19,6 +19,8 @@
         </x-slot>
         <x-slot name="urlDetail">{{ route('artikel-detail', $item->slug) }}</x-slot>
     </x-article-frontend-component>
+    <input type="hidden" name="page" value="1" id="page-artikel" />
+
 @empty
     <h4>Data tidak ada</h4>
 @endforelse
