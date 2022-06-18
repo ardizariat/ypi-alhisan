@@ -2,38 +2,38 @@
 
 namespace App\Repositories;
 
-use App\Models\KasMasuk;
-use App\Repositories\Interface\KasMasukInterface;
+use App\Models\Agenda;
+use App\Models\RapatYayasan;
+use App\Repositories\Interface\AgendaInterface;
 use Illuminate\Support\Facades\DB;
 
-class KasMasukRepository implements KasMasukInterface
+class AgendaRepository implements AgendaInterface
 {
-    public function kasMasukAdmin()
+    public function agendaAdmin()
     {
-        return DB::table('kas_masuk as km')
+        return DB::table('agenda as a')
+            ->leftJoin('rapat_yayasan as ry', 'ry.id', '=', 'a.rapat_yayasan_id')
             ->selectRaw('
-            km.*
+            a.*
         ')
-            ->orderByDesc('km.tanggal');
+            ->orderByDesc('a.tanggal');
     }
 
-    public function storeKasMasuk($request)
+    public function storeAgenda($request)
     {
         try {
             DB::beginTransaction();
-            $kasMasuk = new KasMasuk();
-            $kasMasuk->dari = $request->dari ?? 'hamba Alloh';
-            $kasMasuk->tanggal = $request->tanggal;
-            $kasMasuk->nominal = $request->nominal;
-            $kasMasuk->keterangan = $request->keterangan;
-            $kasMasuk->save();
+            $agenda = new Agenda();
+            $agenda->tanggal = $request->tanggal;
+            $agenda->keterangan = $request->keterangan;
+            $agenda->save();
 
             DB::commit();
             $response = [
                 'status_code' => 201,
                 'status' => 'success',
                 'message' => 'Data berhasil dibuat',
-                'url' => route('admin.kas-masuk.index')
+                'url' => route('admin.agenda.index')
             ];
 
             return $response;
@@ -49,22 +49,26 @@ class KasMasukRepository implements KasMasukInterface
         }
     }
 
-    public function updateKasMasuk($kasMasuk, $request)
+    public function updateAgenda($agenda, $request)
     {
         try {
             DB::beginTransaction();
-            $kasMasuk->dari = $request->dari ?? 'hamba Alloh';
-            $kasMasuk->tanggal = $request->tanggal;
-            $kasMasuk->nominal = $request->nominal;
-            $kasMasuk->keterangan = $request->keterangan;
-            $kasMasuk->update();
+            $rapatYayasan = RapatYayasan::find($agenda->rapat_yayasan_id);
+            if ($rapatYayasan) {
+                $rapatYayasan->tanggal = $request->tanggal;
+                $rapatYayasan->bahasan = $request->keterangan;
+                $rapatYayasan->update();
+            }
+            $agenda->tanggal = $request->tanggal;
+            $agenda->keterangan = $request->keterangan;
+            $agenda->update();
 
             DB::commit();
             $response = [
                 'status_code' => 200,
                 'status' => 'success',
                 'message' => 'Data berhasil diupdate',
-                'url' => route('admin.kas-masuk.index')
+                'url' => route('admin.agenda.index')
             ];
 
             return $response;
@@ -80,19 +84,21 @@ class KasMasukRepository implements KasMasukInterface
         }
     }
 
-    public function deleteKasMasuk($kasMasuk)
+    public function deleteAgenda($agenda)
     {
         try {
             DB::beginTransaction();
-
-            $kasMasuk->delete();
+            $rapatYayasan = RapatYayasan::find($agenda->rapat_yayasan_id);
+            if ($rapatYayasan)
+                $rapatYayasan->delete();
+            $agenda->delete();
 
             DB::commit();
             $response = [
                 'status_code' => 200,
                 'status' => 'success',
                 'message' => 'Data berhasil dihapus',
-                'url' => route('admin.kas-masuk.index')
+                'url' => route('admin.agenda.index')
             ];
 
             return $response;
@@ -106,13 +112,5 @@ class KasMasukRepository implements KasMasukInterface
 
             return $response;
         }
-    }
-
-    public function dataLaporanKasMasuk($dari, $sampai)
-    {
-        return DB::table('kas_masuk as km')
-            ->whereBetween('km.tanggal', [$dari, $sampai])
-            ->orderByDesc('km.tanggal')
-            ->get();
     }
 }

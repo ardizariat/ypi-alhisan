@@ -63,6 +63,12 @@
                          <span>Rapat Yayasan</span>
                      </a>
                  </li>
+                 <li class="sidebar-item {{ activeClass('admin.agenda.index') }}">
+                     <a href="{{ route('admin.agenda.index') }}" class='sidebar-link'>
+                         <i class="bi bi-card-checklist"></i>
+                         <span>Agenda</span>
+                     </a>
+                 </li>
                  <li
                      class="sidebar-item has-sub {{ activeClass('admin.kas-keluar.index') }} {{ activeClass('admin.kas-masuk.index') }}">
                      <a href="#" class='sidebar-link'>

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Agenda;
 use App\Repositories\Interface\RapatYayasanInterface;
 use Illuminate\Support\Facades\DB;
 
@@ -23,5 +24,109 @@ class RapatYayasanRepository implements RapatYayasanInterface
             ->where('p.rapat_yayasan_id', $rapatYayasanId)
             ->orderByDesc('p.created_at')
             ->get();
+    }
+
+    public function storeRapatYayasan($request)
+    {
+        try {
+            DB::beginTransaction();
+            $rapatYayasan = DB::table('rapat_yayasan')->insertGetId([
+                'kode' => kodeRapatYayasan(),
+                'tanggal' => $request->tanggal,
+                'bahasan' => $request->bahasan,
+                'created_at' => tanggalJamSekarang()
+            ]);
+
+            $agenda = new Agenda();
+            $agenda->rapat_yayasan_id = $rapatYayasan;
+            $agenda->tanggal = $request->tanggal;
+            $agenda->keterangan = 'rapat yayasan';
+            $agenda->save();
+
+            DB::commit();
+
+            $response = [
+                'status_code' => 201,
+                'status' => 'success',
+                'message' => 'Data berhasil dibuat',
+                'url' => route('admin.rapat-yayasan.index')
+            ];
+
+            return $response;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = [
+                'status_code' => 400,
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ];
+
+            return $response;
+        }
+    }
+
+    public function updateRapatYayasan($rapatYayasan, $request)
+    {
+        try {
+            DB::beginTransaction();
+            $agenda = Agenda::where('rapat_yayasan_id', $rapatYayasan->id)->first();
+            if ($agenda) {
+                $agenda->tanggal = $request->tanggal;
+                $agenda->keterangan = 'rapat yayasan';
+                $agenda->update();
+            }
+            $rapatYayasan->tanggal = $request->tanggal;
+            $rapatYayasan->bahasan = $request->bahasan;
+            $rapatYayasan->update();
+
+            DB::commit();
+            $response = [
+                'status_code' => 200,
+                'status' => 'success',
+                'message' => 'Data berhasil diupdate',
+                'url' => route('admin.rapat-yayasan.index')
+            ];
+
+            return $response;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = [
+                'status_code' => 400,
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ];
+
+            return $response;
+        }
+    }
+
+    public function deleteRapatYayasan($rapatYayasan)
+    {
+        try {
+            DB::beginTransaction();
+            $agenda = Agenda::where('rapat_yayasan_id', $rapatYayasan->id)->first();
+            if ($agenda)
+                $agenda->delete();
+            $rapatYayasan->delete();
+
+            DB::commit();
+            $response = [
+                'status_code' => 200,
+                'status' => 'success',
+                'message' => 'Data berhasil dihapus',
+                'url' => route('admin.rapat-yayasan.index')
+            ];
+
+            return $response;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = [
+                'status_code' => 400,
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ];
+
+            return $response;
+        }
     }
 }

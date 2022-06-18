@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Agenda\AgendaController;
 use App\Http\Controllers\Admin\Alhisan\AlhisanController;
 use App\Http\Controllers\Admin\Artikel\ArtikelController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
@@ -118,5 +119,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{galeri}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
         Route::delete('/{galeri}', 'delete')->name('delete');
+    });
+
+    Route::controller(AgendaController::class)->prefix('agenda')->name('agenda.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{agenda}/edit', 'edit')->name('edit');
+        Route::get('/{agenda}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{agenda}', 'update')->name('update');
+        Route::delete('/{agenda}', 'delete')->name('delete');
     });
 });

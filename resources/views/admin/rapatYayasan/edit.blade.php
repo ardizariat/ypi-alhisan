@@ -107,9 +107,10 @@
                     CKEDITOR.instances[instance].updateElement()
                 }
 
-                sendData(data).then((result) => {
-                    alertSuccess(result.message)
-                    pindahHalaman(result.url, 2000)
+                sendData(data).then((response) => {
+                    let res = response.data
+                    alertSuccess(res.message)
+                    pindahHalaman(res.url, 2000)
                 }).catch((err) => {
                     alertError()
                 })

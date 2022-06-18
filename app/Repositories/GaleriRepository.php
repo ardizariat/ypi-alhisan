@@ -25,6 +25,7 @@ class GaleriRepository implements GaleriInterface
         try {
             DB::beginTransaction();
 
+            $request->file('filename')->store('', 'google');
             $posterDakwah = new Galeri();
             $posterDakwah->keterangan = $request->keterangan;
             $posterDakwah->kategori_id = $this->kategoriPosterDakwah;

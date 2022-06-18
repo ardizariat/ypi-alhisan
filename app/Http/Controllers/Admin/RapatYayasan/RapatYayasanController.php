@@ -55,26 +55,15 @@ class RapatYayasanController extends Controller
 
     public function store(RapatYayasanRequest $request)
     {
-        try {
-            DB::beginTransaction();
-            DB::table('rapat_yayasan')->insert([
-                'kode' => kodeRapatYayasan(),
-                'tanggal' => $request->tanggal,
-                'bahasan' => $request->bahasan,
-                'created_at' => tanggalJamSekarang()
-            ]);
-            DB::commit();
+        $req = $this->rapatYayasanRepository->storeRapatYayasan($request);
+        if ($req['status'] == 'success') {
             return response()->json([
-                'status' => 'success',
-                'message' => 'Schedule rapat yayasan berhasil dibuat',
-                'url' => route('admin.rapat-yayasan.index')
-            ], 201);
-        } catch (\Exception $e) {
-            DB::rollback();
+                'data' => $req
+            ], $req['status_code']);
+        } else {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Schedule rapat yayasan gagal dibuat',
-            ], 400);
+                'data' => $req
+            ], $req['status_code']);
         }
     }
 
@@ -87,45 +76,29 @@ class RapatYayasanController extends Controller
 
     public function update(RapatYayasan $rapatYayasan, RapatYayasanRequest $request)
     {
-        try {
-            DB::beginTransaction();
-            $rapatYayasan->update([
-                'hasil' => $request->hasil,
-                'tanggal' => $request->tanggal,
-                'bahasan' => $request->bahasan,
-            ]);
-            DB::commit();
+        $req = $this->rapatYayasanRepository->updateRapatYayasan($rapatYayasan, $request);
+        if ($req['status'] == 'success') {
             return response()->json([
-                'status' => 'success',
-                'message' => 'Hasil rapat berhasil diupdate',
-                'url' => route('admin.rapat-yayasan.show', $rapatYayasan->id)
-            ], 200);
-        } catch (\Exception $e) {
-            DB::rollback();
+                'data' => $req
+            ], $req['status_code']);
+        } else {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Schedule rapat yayasan gagal dihapus',
-            ], 400);
+                'data' => $req
+            ], $req['status_code']);
         }
     }
 
     public function delete(RapatYayasan $rapatYayasan)
     {
-        try {
-            DB::beginTransaction();
-            $rapatYayasan->delete();
-            DB::commit();
+        $req = $this->rapatYayasanRepository->deleteRapatYayasan($rapatYayasan);
+        if ($req['status'] == 'success') {
             return response()->json([
-                'status' => 'success',
-                'message' => 'Schedule rapat yayasan berhasil dihapus',
-                'url' => route('admin.rapat-yayasan.index')
-            ], 200);
-        } catch (\Exception $e) {
-            DB::rollback();
+                'data' => $req
+            ], $req['status_code']);
+        } else {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Schedule rapat yayasan gagal dihapus',
-            ], 400);
+                'data' => $req
+            ], $req['status_code']);
         }
     }
 
