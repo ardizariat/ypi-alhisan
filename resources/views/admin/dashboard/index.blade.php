@@ -129,7 +129,7 @@
                                             <tr>
                                                 <td>{!! $loop->iteration !!}</td>
                                                 <td>{!! $item->tanggal ? tanggal($item->tanggal) : '' !!}</td>
-                                                <td>{!! $item->dari !!}</td>
+                                                <td>{!! $item->untuk !!}</td>
                                                 <td>{!! $item->nominal ? rp($item->nominal) : '' !!}</td>
                                             </tr>
                                         @empty

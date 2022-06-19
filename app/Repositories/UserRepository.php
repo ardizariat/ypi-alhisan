@@ -103,6 +103,36 @@ class UserRepository implements UserInterface
         }
     }
 
+    public function resetPassword($user)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user->update([
+                'password' => bcrypt($this->defaultPassword)
+            ]);
+
+            DB::commit();
+            $response = [
+                'status_code' => 200,
+                'status' => 'success',
+                'message' => 'Data berhasil diupdate',
+                'url' => route('admin.user.index')
+            ];
+
+            return $response;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = [
+                'status_code' => 400,
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ];
+
+            return $response;
+        }
+    }
+
     public function deleteUser($user)
     {
         try {

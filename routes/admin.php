@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\Alhisan\AlhisanController;
 use App\Http\Controllers\Admin\Artikel\ArtikelController;
 use App\Http\Controllers\Admin\Artikel\KategoriArtikelController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Galeri\GaleriController;
 use App\Http\Controllers\Admin\Galeri\PosterDakwahController;
+use App\Http\Controllers\Admin\Inventari\InventarisController;
 use App\Http\Controllers\Admin\KalimatHikmah\KalimatHikmahController;
 use App\Http\Controllers\Admin\Kas\{
     KasMasukController,
@@ -122,6 +124,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'store')->name('store');
         Route::get('/{user}/edit', 'edit')->name('edit');
         Route::put('/{user}', 'update')->name('update');
+        Route::put('/{user}/reset-password', 'resetPassword')->name('reset-password');
         Route::delete('/{user}', 'delete')->name('delete');
     });
 
@@ -130,6 +133,14 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::controller(PosterDakwahController::class)->prefix('poster-dakwah')->name('poster-dakwah.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{galeri}', 'show')->name('show');
+        Route::post('/', 'store')->name('store');
+        Route::delete('/{galeri}', 'delete')->name('delete');
+    });
+
+    Route::controller(GaleriController::class)->prefix('galeri')->name('galeri.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/tambah', 'create')->name('create');
         Route::get('/{galeri}', 'show')->name('show');
@@ -162,5 +173,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{user}/edit-profil', 'editProfil')->name('edit-profil');
         Route::put('/{user}/update-profil', 'updateProfil')->name('update-profil');
         Route::put('/{user}/update-password', 'updatePassword')->name('update-password');
+    });
+
+    Route::controller(InventarisController::class)->prefix('inventaris')->name('inventaris.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{inventaris}', 'show')->name('show');
+        Route::get('/{inventaris}/ubah', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{inventaris}', 'update')->name('update');
+        Route::delete('/{inventaris}', 'delete')->name('delete');
     });
 });

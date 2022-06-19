@@ -4,8 +4,7 @@
             <p>{{ date('Y') }} &copy; Alhisan</p>
         </div>
         {{-- <div class="float-end">
-            <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-                by <a href="https://ahmadsaugi.com">Saugi</a></p>
+            <p>Development by </p>
         </div> --}}
     </div>
 </footer>

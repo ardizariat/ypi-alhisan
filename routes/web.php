@@ -12,6 +12,7 @@ Route::controller(AppController::class)->group(function () {
     Route::get('/visi-misi', 'visiMisi')->name('visi-misi');
     Route::get('/struktur-organisasi', 'strukturOrganisasi')->name('struktur-organisasi');
     Route::get('/galeri', 'galeri')->name('galeri');
+    Route::get('/galeri/{galeri}', 'galeriDetail')->name('galeri-detail');
     Route::get('/artikel', 'artikel')->name('artikel');
     Route::get('/kalimat-hikmah', 'kalimatHikmah')->name('kalimat-hikmah');
     Route::get('/poster-dakwah', 'posterDakwah')->name('poster-dakwah');

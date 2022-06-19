@@ -17,8 +17,10 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="/"><img src="{{ asset('storage/alhisan/' . alhisan()->logo) }}"
-                                alt="Alhisan"></a>
+                        <a href="/">
+                            <img src="{{ asset('assets/images/logo/alhisanLogo.png') }}" alt="Alhisan"
+                                style="height: 200px">
+                        </a>
                     </div>
                     <h1 class="auth-title">Login</h1>
                     <form method="POST" action="{{ route('auth.login.store') }}">
@@ -37,7 +39,7 @@
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary btn-block btn-lg shadow-lg mt-5">Log
+                        <button type="submit" class="btn btn-outline-primary btn-block btn-lg shadow-lg">Log
                             in</button>
                     </form>
                 </div>

@@ -186,4 +186,18 @@ class UserController extends Controller
             ], 400);
         }
     }
+
+    public function resetPassword(User $user)
+    {
+        $req = $this->userRepository->resetPassword($user);
+        if ($req['status'] == 'success') {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        } else {
+            return response()->json([
+                'data' => $req
+            ], $req['status_code']);
+        }
+    }
 }

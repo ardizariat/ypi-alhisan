@@ -71,12 +71,13 @@ class RapatYayasanRepository implements RapatYayasanInterface
             DB::beginTransaction();
             $agenda = Agenda::where('rapat_yayasan_id', $rapatYayasan->id)->first();
             if ($agenda) {
-                $agenda->tanggal = $request->tanggal;
+                $agenda->tanggal = $request->tanggal ?? $agenda->tanggal;
                 $agenda->keterangan = 'rapat yayasan';
                 $agenda->update();
             }
-            $rapatYayasan->tanggal = $request->tanggal;
-            $rapatYayasan->bahasan = $request->bahasan;
+            $rapatYayasan->tanggal = $request->tanggal ?? $rapatYayasan->tanggal;
+            $rapatYayasan->bahasan = $request->bahasan ?? $rapatYayasan->bahasan;
+            $rapatYayasan->hasil = $request->hasil ?? $rapatYayasan->hasil;
             $rapatYayasan->update();
 
             DB::commit();

@@ -28,9 +28,17 @@
                             data-bs-placement="top" data-bs-original-title="Ubah" class="btn btn-outline-success">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <button onclick="hapus(`{{ route('admin.user.delete', $item->id) }}`)" data-bs-toggle="tooltip"
-                            title="hapus" data-bs-placement="top" data-bs-original-title="Hapus"
-                            class="btn btn-outline-danger">
+                        <form action="{{ route('admin.user.reset-password', $item->id) }}" method="post">
+                            @method('put')
+                            <button type="submit" onclick="resetPassword(this.form)" data-bs-toggle="tooltip"
+                                title="Reset password" data-bs-placement="top" data-bs-original-title="Reset password"
+                                class="btn btn-outline-info">
+                                <i class="bi bi-arrow-repeat"></i>
+                            </button>
+                        </form>
+                        <button onclick="hapus(`{{ route('admin.user.delete', $item->id) }}`)"
+                            data-bs-toggle="tooltip" title="hapus" data-bs-placement="top"
+                            data-bs-original-title="Hapus" class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>

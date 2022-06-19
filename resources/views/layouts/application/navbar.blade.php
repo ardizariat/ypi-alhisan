@@ -1,9 +1,11 @@
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-        <h1 class="logo me-auto"><a href="/"><span>YPI</span>Alhisan</a></h1>
+        {{-- <h1 class="logo me-auto"><a href="/"><span>YPI</span>Alhisan</a></h1> --}}
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="application/img/logo.png" alt="" class="img-fluid"></a>-->
+        <a href="index.html" class="logo me-auto">
+            <img src="{{ asset('assets/images/logo/alhisanLogo.png') }}" alt="alhisan" class="img-fluid">
+        </a>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>

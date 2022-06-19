@@ -4,13 +4,17 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3 class="mt-xl-5 pt-xl-3">
+                    <h3 class="">
                         @auth
                             <a class="text-decoration-none text-white" href="{{ route('admin.dashboard.index') }}">
-                                {!! alhisan()->nama !!}</a>
+                                <img src="{{ asset('assets/images/logo/alhisanLogo.png') }}" alt="alhisan"
+                                    style="height: 120px" class="img-fluid">
+                            </a>
                         @else
-                            <a class="text-decoration-none text-white"
-                                href="{{ route('auth.login') }}">{!! alhisan()->nama !!}</a>
+                            <a class="text-decoration-none text-white" href="{{ route('auth.login') }}">
+                                <img src="{{ asset('assets/images/logo/alhisanLogo.png') }}" alt="alhisan"
+                                    style="height: 120px" class="img-fluid">
+                            </a>
                         @endauth
 
                     </h3>

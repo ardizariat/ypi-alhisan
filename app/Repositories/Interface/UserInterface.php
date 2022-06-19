@@ -11,6 +11,7 @@ interface UserInterface
     public function profilSaya($userId);
     public function updateProfilUser($user, $request);
     public function aktifitasUser();
+    public function resetPassword($user);
 
     public function roleUsers();
     public function findRole($id);

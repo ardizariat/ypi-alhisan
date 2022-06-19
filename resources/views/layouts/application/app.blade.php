@@ -13,6 +13,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
 
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/alhisanLogo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/alhisanLogo.png') }}" type="image/png">
+
 
     <title>{{ $title }}</title>
 

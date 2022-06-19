@@ -11,6 +11,7 @@ use App\Repositories\Interface\{
     KalimatHikmahInterface,
     PengurusYayasanInterface
 };
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -51,10 +52,43 @@ class AppController extends Controller
         return view('frontend.strukturOrganisasi', compact('data'));
     }
 
-    public function galeri()
+    public function galeri(Request $request)
     {
         $data['title'] = 'Galeri';
+        $perPage = 16;
+        if ($request->ajax()) {
+            $data['data'] = $this->galeriRepository->galeriApp()
+                ->paginate($perPage);
+            return view('frontend.fetch.galeriFetch', compact('data'))->render();
+        }
+        $data['data'] = $this->galeriRepository->galeriApp()
+            ->paginate($perPage);
         return view('frontend.galeri', compact('data'));
+    }
+
+    public function galeriDetail(Galeri $galeri)
+    {
+        $path = asset('storage/galeri/' . $galeri->filename);
+        $output = '
+            <div class="modal-header">
+                <h5 class="modal-title" id="galleryModalTitle">' . $galeri->keterangan . '</h5>
+            </div>
+            <div class="modal-body">
+                <div class="carousel slide carousel-fade">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100"
+                                src="' . $path . '">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        ';
+
+        echo $output;
     }
 
     public function tentangKami()

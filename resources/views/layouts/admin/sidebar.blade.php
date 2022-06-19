@@ -3,8 +3,8 @@
          <div class="sidebar-header position-relative">
              <div class="d-flex justify-content-between align-items-center">
                  <div class="logo">
-                     <a href="/" target="_blank"><img src="{{ asset('storage/alhisan/' . alhisan()->logo) }}"
-                             alt="Alhisan" srcset=""></a>
+                     <a href="/" target="_blank"><img src="{{ asset('assets/images/logo/alhisanLogo.png') }}"
+                             style="height:100px" alt="Alhisan" srcset=""></a>
                  </div>
                  <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                      <div class="form-check form-switch fs-6">
@@ -61,13 +61,18 @@
                          <span>Kalimat Hikmah</span>
                      </a>
                  </li>
-                 <li class="sidebar-item has-sub {{ activeClass('admin.poster-dakwah.index') }}">
+                 <li
+                     class="sidebar-item has-sub {{ activeClass('admin.galeri.index') }} {{ activeClass('admin.poster-dakwah.index') }}">
                      <a href="#" class='sidebar-link'>
                          <i class="bi bi-image-fill"></i>
                          <span>Galeri</span>
                      </a>
-                     <ul class="submenu">
-                         <li class="submenu-item">
+                     <ul
+                         class="submenu {{ activeClass('admin.galeri.index') }} {{ activeClass('admin.poster-dakwah.index') }}">
+                         <li class="submenu-item {{ activeClass('admin.galeri.index') }}">
+                             <a href="{{ route('admin.galeri.index') }}">Galeri Kegiatan</a>
+                         </li>
+                         <li class="submenu-item {{ activeClass('admin.poster-dakwah.index') }}">
                              <a href="{{ route('admin.poster-dakwah.index') }}">Poster Dakwah</a>
                          </li>
                      </ul>
@@ -83,6 +88,12 @@
                      <a href="{{ route('admin.agenda.index') }}" class='sidebar-link'>
                          <i class="bi bi-card-checklist"></i>
                          <span>Agenda</span>
+                     </a>
+                 </li>
+                 <li class="sidebar-item {{ activeClass('admin.inventaris.index') }}">
+                     <a href="{{ route('admin.inventaris.index') }}" class='sidebar-link'>
+                         <i class="bi bi-receipt"></i>
+                         <span>Inventaris</span>
                      </a>
                  </li>
                  <li
