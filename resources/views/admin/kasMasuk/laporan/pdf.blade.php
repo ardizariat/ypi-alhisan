@@ -3,7 +3,7 @@
         <div class="invoice invoice-print">
             <div class="invoice-wrap">
                 <div class="invoice-brand text-center">
-                    <img src="{{ asset('backend/images/logo-rs.jpeg') }}">
+                    <img src="{{ asset('assets/images/logo/alhisanLogo.png') }}">
                     <h3 class="title text-center">{!! $data['title'] !!}</h3>
                 </div>
                 <div class="invoice-head">

@@ -120,6 +120,11 @@ function kodeRapatYayasan()
     return kode('rapat_yayasan', 'kode', '13', 'YPI-' . $prefix);
 }
 
+function kodeBarangInventaris()
+{
+    return kode('inventaris', 'kode', '13', 'YPI-BRG-');
+}
+
 function tanggalJamSekarang()
 {
     return now()->toDateTimeLocalString();

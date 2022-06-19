@@ -17,6 +17,7 @@ class KategoriSeeder extends Seeder
     {
         $data = [
             ["poster dakwah", 'poster dakwah', 'poster dakwah', 'aktif'],
+            ["inventaris", 'inventaris', 'inventaris', 'aktif'],
             ["Al-Qur'an", 'al-quran', 'artikel', 'aktif'],
             ["Al-Hadist", 'al-hadist', 'artikel', 'aktif'],
         ];

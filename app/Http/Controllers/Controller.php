@@ -18,6 +18,12 @@ class Controller extends BaseController
         return $status;
     }
 
+    public function statusInventaris()
+    {
+        $status = ['baik', 'rusak'];
+        return $status;
+    }
+
     public function roles()
     {
         return DB::table('roles as r')->selectRaw('r.id, r.name')->get();

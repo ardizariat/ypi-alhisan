@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\Artikel\KategoriArtikelController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Galeri\GaleriController;
 use App\Http\Controllers\Admin\Galeri\PosterDakwahController;
-use App\Http\Controllers\Admin\Inventari\InventarisController;
+use App\Http\Controllers\Admin\Inventaris\InventarisController;
 use App\Http\Controllers\Admin\KalimatHikmah\KalimatHikmahController;
 use App\Http\Controllers\Admin\Kas\{
     KasMasukController,
@@ -178,6 +178,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(InventarisController::class)->prefix('inventaris')->name('inventaris.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/tambah', 'create')->name('create');
+        Route::get('/modal-ekspor', 'modalEkspor')->name('modal-ekspor');
+        Route::get('/ekspor-laporan', 'eksporLaporan')->name('ekspor-laporan');
         Route::get('/{inventaris}', 'show')->name('show');
         Route::get('/{inventaris}/ubah', 'edit')->name('edit');
         Route::post('/', 'store')->name('store');

@@ -90,7 +90,8 @@
                          <span>Agenda</span>
                      </a>
                  </li>
-                 <li class="sidebar-item {{ activeClass('admin.inventaris.index') }}">
+                 <li
+                     class="sidebar-item {{ activeClass('admin.inventaris.index') }} {{ activeClass('admin.inventaris.create') }} {{ activeClass('admin.inventaris.show') }} {{ activeClass('admin.inventaris.edit') }}">
                      <a href="{{ route('admin.inventaris.index') }}" class='sidebar-link'>
                          <i class="bi bi-receipt"></i>
                          <span>Inventaris</span>

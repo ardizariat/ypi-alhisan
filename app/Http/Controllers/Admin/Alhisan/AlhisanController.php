@@ -30,6 +30,7 @@ class AlhisanController extends Controller
         $alhisan->no_hp = $request->no_hp;
         $alhisan->email = $request->email;
         $alhisan->alamat = $request->alamat;
+        $alhisan->tentang = $request->tentang;
         $alhisan->visi = $request->visi;
         $alhisan->misi = $request->misi;
         $alhisan->tujuan = $request->tujuan;
