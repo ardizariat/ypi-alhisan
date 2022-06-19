@@ -19,7 +19,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'dewan pembina')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
@@ -34,7 +36,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'dewan pengawas')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
@@ -50,7 +54,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'ketua')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
@@ -61,7 +67,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'wakil' || $item->bagian == 'sekretaris' || $item->bagian == 'bendahara')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
@@ -73,7 +81,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'bidang pendidikan dan dakwah')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
@@ -84,7 +94,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'bidang sosial')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>
@@ -95,7 +107,9 @@
                     @foreach ($data['data'] as $item)
                         @if ($item->bagian == 'bidang usaha lainnya')
                             <x-card-struktur-organisasi-component>
-                                <x-slot name="pathImage">application/img/user.png</x-slot>
+                                <x-slot name="pathImage">
+                                    {{ $item->foto ? asset('storage/pengurusYayasan/' . $item->foto) : 'application/img/user.png' }}
+                                </x-slot>
                                 <x-slot name="nama">{!! $item->nama !!}</x-slot>
                                 <x-slot name="bagian">{!! $item->bagian !!}</x-slot>
                             </x-card-struktur-organisasi-component>

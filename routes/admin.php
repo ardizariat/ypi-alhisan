@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Galeri\GaleriController;
 use App\Http\Controllers\Admin\Galeri\PosterDakwahController;
 use App\Http\Controllers\Admin\Inventaris\InventarisController;
+use App\Http\Controllers\Admin\Inventaris\KategoriInventarisController;
 use App\Http\Controllers\Admin\KalimatHikmah\KalimatHikmahController;
 use App\Http\Controllers\Admin\Kas\{
     KasMasukController,
@@ -38,6 +39,15 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::controller(KategoriArtikelController::class)->prefix('kategori-artikel')->name('kategori-artikel.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::get('/{kategori}/ubah', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{kategori}', 'update')->name('update');
+        Route::delete('/{kategori}', 'delete')->name('delete');
+    });
+
+    Route::controller(KategoriInventarisController::class)->prefix('kategori-inventaris')->name('kategori-inventaris.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/tambah', 'create')->name('create');
         Route::get('/{kategori}/ubah', 'edit')->name('edit');
@@ -160,6 +170,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(PengurusYayasanController::class)->prefix('pengurus-yayasan')->name('pengurus-yayasan.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/struktur-organisasi', 'strukturOrganisasi')->name('struktur-organisasi');
         Route::get('/tambah', 'create')->name('create');
         Route::get('/{pengurusYayasan}', 'show')->name('show');
         Route::get('/{pengurusYayasan}/ubah', 'edit')->name('edit');

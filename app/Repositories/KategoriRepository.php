@@ -11,15 +11,15 @@ class KategoriRepository implements KategoriInterface
 {
     public $artikel = 'artikel';
 
-    public function kategoriArtikelAdmin()
+    public function kategoriAdmin($kategori)
     {
         return DB::table('kategori as k')
             ->selectRaw('k.*')
-            ->where('k.kategori', $this->artikel)
+            ->where('k.kategori', $kategori)
             ->orderByDesc('k.nama');
     }
 
-    public function storeKategoriArtikel($request)
+    public function storeKategori($request, $kategoriSub, $url)
     {
         try {
             DB::beginTransaction();
@@ -30,7 +30,7 @@ class KategoriRepository implements KategoriInterface
             $kategori = new Kategori();
             $kategori->nama = $request->nama;
             $kategori->slug = $slug;
-            $kategori->kategori = $this->artikel;
+            $kategori->kategori = $kategoriSub;
             $kategori->save();
 
             DB::commit();
@@ -38,7 +38,7 @@ class KategoriRepository implements KategoriInterface
                 'status_code' => 201,
                 'status' => 'success',
                 'message' => 'Data berhasil dibuat',
-                'url' => route('admin.kategori-artikel.index')
+                'url' => $url
             ];
 
             return $response;
@@ -54,7 +54,7 @@ class KategoriRepository implements KategoriInterface
         }
     }
 
-    public function updateKategoriArtikel($kategori, $request)
+    public function updateKategori($kategori, $request, $url)
     {
         try {
             DB::beginTransaction();
@@ -66,7 +66,7 @@ class KategoriRepository implements KategoriInterface
                 'status_code' => 200,
                 'status' => 'success',
                 'message' => 'Data berhasil diupdate',
-                'url' => route('admin.kategori-artikel.index')
+                'url' => $url
             ];
 
             return $response;

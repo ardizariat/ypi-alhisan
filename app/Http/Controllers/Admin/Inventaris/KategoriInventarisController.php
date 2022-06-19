@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Artikel;
+namespace App\Http\Controllers\Admin\Inventaris;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kategori;
 use App\Repositories\Interface\KategoriInterface;
 use Illuminate\Http\Request;
 
-class KategoriArtikelController extends Controller
+class KategoriInventarisController extends Controller
 {
     public $perPage = 16,
-        $artikel = 'artikel';
+        $inventaris = 'inventaris';
 
     protected $kategoriRepository;
 
@@ -21,33 +21,32 @@ class KategoriArtikelController extends Controller
 
     public function index(Request $request)
     {
-        $data['title'] = 'Kategori Artikel';
+        $data['title'] = 'Kategori Inventaris';
         if ($request->ajax()) {
             $q = $request->get('q');
-            $data['kategoriArtikel'] = $this
-                ->kategoriRepository
-                ->kategoriAdmin($this->artikel)
+            $data['kategoriInventaris'] = $this->kategoriRepository
+                ->kategoriAdmin($this->inventaris)
                 ->when(
                     $q ?? false,
                     fn ($query) =>
                     $query->where('k.nama', 'like', '%' . $q . '%')
                 )
                 ->paginate($this->perPage);
-            return view('admin.kategori.artikel.fetch', compact('data'))->render();
+            return view('admin.kategori.inventaris.fetch', compact('data'))->render();
         }
 
-        $data['kategoriArtikel'] = $this->kategoriRepository
-            ->kategoriAdmin($this->artikel)
+        $data['kategoriInventaris'] = $this->kategoriRepository
+            ->kategoriAdmin($this->inventaris)
             ->paginate($this->perPage);
 
-        return view('admin.kategori.artikel.index', compact('data'));
+        return view('admin.kategori.inventaris.index', compact('data'));
     }
 
 
     public function create()
     {
         $output = '
-            <form action="' . route('admin.kategori-artikel.store') . '">
+            <form action="' . route('admin.kategori-inventaris.store') . '">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Kategori</h5>
                     <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -83,8 +82,8 @@ class KategoriArtikelController extends Controller
 
     public function store(Request $request)
     {
-        $url = route('admin.kategori-artikel.index');
-        $kategori = 'artikel';
+        $url = route('admin.kategori-inventaris.index');
+        $kategori = 'inventaris';
         $req = $this->kategoriRepository->storeKategori($request, $kategori, $url);
         if ($req['status'] == 'success') {
             return response()->json([
@@ -100,7 +99,7 @@ class KategoriArtikelController extends Controller
     public function edit(Kategori $kategori)
     {
         $output = '
-            <form action="' . route('admin.kategori-artikel.update', $kategori->id) . '">
+            <form action="' . route('admin.kategori-inventaris.update', $kategori->id) . '">
                 <div class="modal-header">
                     <h5 class="modal-title">Ubah Kategori</h5>
                     <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
@@ -136,7 +135,7 @@ class KategoriArtikelController extends Controller
 
     public function update(Kategori $kategori, Request $request)
     {
-        $url = route('admin.kategori-artikel.index');
+        $url = route('admin.kategori-inventaris.index');
         $req = $this->kategoriRepository
             ->updateKategori($kategori, $request, $url);
         if ($req['status'] == 'success') {

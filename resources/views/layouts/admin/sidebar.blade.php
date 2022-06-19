@@ -37,7 +37,6 @@
                          <span>Pengurus Yayasan</span>
                      </a>
                  </li>
-
                  <li
                      class="sidebar-item has-sub {{ activeClass('admin.kategori-artikel.index') }} {{ activeClass('admin.artikel.index') }} {{ activeClass('admin.artikel.create') }} {{ activeClass('admin.artikel.edit') }}">
                      <a href="#" class='sidebar-link'>
@@ -90,12 +89,23 @@
                          <span>Agenda</span>
                      </a>
                  </li>
+
                  <li
-                     class="sidebar-item {{ activeClass('admin.inventaris.index') }} {{ activeClass('admin.inventaris.create') }} {{ activeClass('admin.inventaris.show') }} {{ activeClass('admin.inventaris.edit') }}">
-                     <a href="{{ route('admin.inventaris.index') }}" class='sidebar-link'>
+                     class="sidebar-item has-sub {{ activeClass('admin.kategori-inventaris.index') }} {{ activeClass('admin.inventaris.index') }} {{ activeClass('admin.inventaris.create') }} {{ activeClass('admin.inventaris.show') }} {{ activeClass('admin.inventaris.edit') }}">
+                     <a href="#" class='sidebar-link'>
                          <i class="bi bi-receipt"></i>
                          <span>Inventaris</span>
                      </a>
+                     <ul
+                         class="submenu {{ activeClass('admin.kategori-inventaris.index') }} {{ activeClass('admin.inventaris.index') }} {{ activeClass('admin.inventaris.create') }} {{ activeClass('admin.inventaris.show') }} {{ activeClass('admin.inventaris.edit') }}">
+                         <li
+                             class="submenu-item {{ activeClass('admin.inventaris.index') }} {{ activeClass('admin.inventaris.create') }} {{ activeClass('admin.inventaris.show') }} {{ activeClass('admin.inventaris.edit') }}">
+                             <a href="{{ route('admin.inventaris.index') }}">Inventaris</a>
+                         </li>
+                         <li class="submenu-item {{ activeClass('admin.kategori-inventaris.index') }}">
+                             <a href="{{ route('admin.kategori-inventaris.index') }}">Kategori</a>
+                         </li>
+                     </ul>
                  </li>
                  <li
                      class="sidebar-item has-sub {{ activeClass('admin.kas-keluar.index') }} {{ activeClass('admin.kas-masuk.index') }}">

@@ -7,6 +7,7 @@
             @foreach ($data as $item)
                 <div class="col-lg-4 col-md-12 col-sm-12 entries">
                     <x-article-frontend-component>
+                        <x-slot name="style">max-height: 14em; width:29em;</x-slot>
                         <x-slot name="urlImage">{{ asset('storage/artikel/' . $item->thumbnail) }}</x-slot>
                         <x-slot name="judul">{!! Str::limit($item->judul, 30, '.') !!}</x-slot>
                         <x-slot name="tanggal">

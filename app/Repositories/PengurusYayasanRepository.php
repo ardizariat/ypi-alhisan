@@ -47,27 +47,20 @@ class PengurusYayasanRepository implements PengurusYayasanInterface
             ->join('pengurus_yayasan as py', 'so.pengurus_yayasan_id', '=', 'py.id')
             ->join('bagian as b', 'b.id', '=', 'so.bagian_id')
             ->join('users as u', 'u.id', '=', 'py.user_id')
+            ->where('so.pengurus_yayasan_id', $pengurusYayasanId)
             ->where('py.id', $pengurusYayasanId)
             ->first();
     }
 
-    public function strukturOrganisasi($request = '')
+    public function strukturOrganisasi()
     {
-        $strukturOrganisasi = DB::table('struktur_organisasi as so')
+        return DB::table('struktur_organisasi as so')
             ->join('bagian as b', 'b.id', '=', 'so.bagian_id')
             ->join('pengurus_yayasan as py', 'py.id', '=', 'so.pengurus_yayasan_id')
-            ->selectRaw('so.id, py.nama, b.nama as bagian')
-            ->when(
-                $request ?? false,
-                fn ($query) =>
-                $query->where('py.nama', 'LIKE', '%' . $request . '%')
-                    ->orWhere('py.status', 'LIKE', '%' . $request . '%')
-            )
+            ->selectRaw('so.id, py.nama, b.nama as bagian, py.foto')
             ->orderBy('so.id')
             ->where('so.status', 'aktif')
             ->get();
-
-        return $strukturOrganisasi;
     }
 
     public function storePengurusYayasan($request)

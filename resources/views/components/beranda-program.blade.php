@@ -15,7 +15,8 @@
                          <i class="bi bi-book"></i>
                      </div>
                      <h4><a href="">Pendidikan</a></h4>
-                     <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                     <p>Mewujudkan program-program tarbiyah islamiyah yang komperhensif meliputi semua prinsip-prinsip
+                         agama islam, baik aqidah, ibadah, mu'amalah, akhlaq dan adab.</p>
                  </div>
              </div>
 
@@ -30,8 +31,8 @@
                          </svg>
                          <i class="bi bi-save2"></i>
                      </div>
-                     <h4><a href="">Wakaf / Infaq / Zakat</a></h4>
-                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                     <h4><a href="">Infaq & Zakat</a></h4>
+                     <p>Kami menerima dan menyalurkan infaq dan zakat anda</p>
                  </div>
              </div>
 
@@ -47,7 +48,7 @@
                          <i class="bi bi-cash-coin"></i>
                      </div>
                      <h4><a href="">Unit Usaha</a></h4>
-                     <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+                     <p>Memberdayakan sumber daya manusia untuk bisa mandiri dan bermanfaat</p>
                  </div>
              </div>
 
@@ -62,7 +63,7 @@
                          <i class="bx bx-layer"></i>
                      </div>
                      <h4><a href="">Majelis Ta'lim</a></h4>
-                     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+                     <p>Setiap minggu kami memiliki agenda majelis ta'lim di Yayasan kami</p>
                  </div>
              </div>
 
@@ -76,8 +77,8 @@
                          </svg>
                          <i class="bi bi-people"></i>
                      </div>
-                     <h4><a href="">300 Hari Tahfidzul Qur'an</a></h4>
-                     <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+                     <h4><a href="">Tahfidzul Qur'an</a></h4>
+                     <p>Mengajarkan anak-anak untuk dekat dengan al-qur'an dengan cara menghafal al-qur'an</p>
                  </div>
              </div>
 
@@ -92,10 +93,9 @@
                          <i class="bi bi-collection-fill"></i>
                      </div>
                      <h4><a href="">Jum'at Berkah</a></h4>
-                     <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+                     <p>Menerima sedekah dan menyalurkannya dengan bentuk makan siang dihari jum'at</p>
                  </div>
              </div>
-
          </div>
 
      </div>

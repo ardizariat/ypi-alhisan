@@ -41,6 +41,12 @@ class PengurusYayasanController extends Controller
         return view('admin.pengurusYayasan.index', compact('data'));
     }
 
+    public function strukturOrganisasi()
+    {
+        $data['title'] = 'Struktur Organisasi';
+        return view('admin.pengurusYayasan.strukturOrganisasi.index', compact('data'));
+    }
+
     public function create()
     {
         $data['title'] = 'Tambah Pengurus Yayasan';
@@ -87,7 +93,6 @@ class PengurusYayasanController extends Controller
     public function show(PengurusYayasan $pengurusYayasan)
     {
         $data = $this->pengurusYayasanRepository->pengurusYayasanDetail($pengurusYayasan->id);
-
         $path = asset('storage/pengurusYayasan/' . $data->foto);
         $output = '
             <div class="modal-header">
