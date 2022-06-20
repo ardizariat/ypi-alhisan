@@ -9,7 +9,6 @@
         <!-- ======= Our Team Section ======= -->
         <section id="team" class="team section-bg">
             <div class="container">
-
                 <div class="section-title" data-aos="fade-up">
                     <h2>Galeri</h2>
                 </div>

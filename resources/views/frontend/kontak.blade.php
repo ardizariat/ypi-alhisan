@@ -13,7 +13,6 @@
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3656656998814!2d106.96435391475426!3d-6.215413695500632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698ddd2c941127%3A0x2b36048a4f861700!2sYPI%20Al-Hisan%20Bekasi!5e0!3m2!1sid!2sid!4v1653630730893!5m2!1sid!2sid"
                 frameborder="0" allowfullscreen></iframe>
         </div>
-
         <section id="contact" class="contact">
             <div class="container">
                 <div class="row justify-content-center" data-aos="fade-up">
