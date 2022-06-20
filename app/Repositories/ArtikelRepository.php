@@ -66,6 +66,18 @@ class ArtikelRepository implements ArtikelInterface
     public function kategoriArtikel()
     {
         $kategori =  DB::table('kategori as k')
+            ->selectRaw('k.nama, k.slug, k.id')
+            ->leftJoin('artikel as a', 'a.kategori_id', '=', 'k.id')
+            // ->groupBy('k.nama', 'k.id')
+            ->where('k.kategori', 'artikel')
+            ->get();
+
+        return $kategori;
+    }
+
+    public function kategoriArtikelsss()
+    {
+        $kategori =  DB::table('kategori as k')
             ->selectRaw("COUNT(a.kategori_id) as kategori_count, k.nama, k.slug, k.id")
             ->leftJoin('artikel as a', 'a.kategori_id', '=', 'k.id')
             ->groupBy('k.nama', 'k.id')

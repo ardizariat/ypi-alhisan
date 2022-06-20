@@ -38,8 +38,10 @@
                             <div class="sidebar-item categories">
                                 <ul>
                                     @foreach ($data['kategori'] as $item)
-                                        <li><a
-                                                href="{{ route('artikel') }}">{{ $item->nama }}<span>{{ $item->kategori_count }}</span></a>
+                                        <li><a href="#">
+                                                {{ $item->nama }}
+                                                {{-- <span>{{ $item->kategori_count }}</span> --}}
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
