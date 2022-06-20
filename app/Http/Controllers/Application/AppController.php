@@ -130,7 +130,7 @@ class AppController extends Controller
             ->artikelApp()->limit(5)->get();
 
         // Get kategori
-        // $data['kategori'] = $this->artikelRepository->kategoriArtikel();
+        $data['kategori'] = $this->artikelRepository->kategoriArtikel();
 
         return view('frontend.artikel', compact('data'));
     }
