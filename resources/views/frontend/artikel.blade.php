@@ -39,7 +39,7 @@
                                 <ul>
                                     @foreach ($data['kategori'] as $item)
                                         <li><a
-                                                href="{{ route('artikel', 'kategori=' . $item->slug . '') }}">{{ $item->nama }}<span>{{ $item->kategori_count }}</span></a>
+                                                href="{{ route('artikel') }}">{{ $item->nama }}<span>{{ $item->kategori_count }}</span></a>
                                         </li>
                                     @endforeach
                                 </ul>
