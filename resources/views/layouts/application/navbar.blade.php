@@ -3,7 +3,7 @@
 
         {{-- <h1 class="logo me-auto"><a href="/"><span>YPI</span>Alhisan</a></h1> --}}
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.html" class="logo me-auto">
+        <a href="/" class="logo me-auto">
             <img src="{{ asset('assets/images/logo/alhisanLogo.png') }}" alt="alhisan" class="img-fluid">
         </a>
 
