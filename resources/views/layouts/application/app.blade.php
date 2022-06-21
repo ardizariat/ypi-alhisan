@@ -6,7 +6,6 @@
     <meta name="Description"
         content="yayasan pendidikan islam alhisan bekasi, kajian, tkq, tpq, alquran, islam, tauhid,  pendidikan">
     <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34=" />
-    <title>Example Books - high-quality used books for children</title>
     <meta name="robots" content="noindex,nofollow">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="title" content="yayasan pendidikan islam alhisan bekasi">
