@@ -116,8 +116,8 @@ function terbilangRupiah($angka)
 
 function kodeRapatYayasan()
 {
-    $prefix = date('dmy') . '-';
-    return kode('rapat_yayasan', 'kode', '13', 'YPI-' . $prefix);
+    $prefix = date('d');
+    return kode('rapat_yayasan', 'kode', '7', 'ypi' . $prefix);
 }
 
 function kodeBarangInventaris()

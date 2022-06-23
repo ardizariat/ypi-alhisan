@@ -120,17 +120,35 @@ class RapatYayasanController extends Controller
             return redirect(route('auth.login'));
         }
 
+        return view('admin.rapatYayasan.absen', compact('rapatYayasan'));
+    }
+
+    public function absen(RapatYayasan $rapatYayasan, Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json([
+                'message' => 'Anda belum login'
+            ], 400);
+        }
+
         try {
             DB::beginTransaction();
 
             $data['rapat_yayasan_id'] = $rapatYayasan->id;
             $data['user_id'] = Auth::id();
+            $kode = $request->kode;
 
             $peserta = DB::table('peserta_rapat_yayasan as p')
                 ->selectRaw('p.id, p.rapat_yayasan_id, p.user_id')
                 ->where('user_id', Auth::id())
                 ->where('rapat_yayasan_id', $rapatYayasan->id)
                 ->first();
+
+            if ($rapatYayasan->kode !== $kode) {
+                return response()->json([
+                    'message' => 'Kode rapat salah'
+                ], 400);
+            }
 
             if (!$peserta) {
                 DB::table('peserta_rapat_yayasan')->insert([
@@ -142,10 +160,15 @@ class RapatYayasanController extends Controller
 
             DB::commit();
 
-            return view('admin.rapatYayasan.absen')->with('message', 'Terima kasih atas kehadiran anda');
+            return response()->json([
+                'message' => 'Absen berhasil, terima kasih atas kehadirannya',
+                'url' => route('admin.dashboard.index')
+            ], 200);
         } catch (\Exception $e) {
             DB::rollback();
-            return abort(500);
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 400);
         }
     }
 
