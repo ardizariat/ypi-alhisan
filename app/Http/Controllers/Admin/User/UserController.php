@@ -163,7 +163,7 @@ class UserController extends Controller
         if ($cek_password) {
             if ($attr['password'] === $attr['password_confirmation']) {
                 $user->update([
-                    'password' => Hash::make($attr['password']),
+                    'password' => bcrypt($attr['password']),
                 ]);
 
                 $user->tokens()->delete();
