@@ -140,8 +140,8 @@ class RapatYayasanController extends Controller
 
             $peserta = DB::table('peserta_rapat_yayasan as p')
                 ->selectRaw('p.id, p.rapat_yayasan_id, p.user_id')
-                ->where('user_id', Auth::id())
-                ->where('rapat_yayasan_id', $rapatYayasan->id)
+                ->where('p.user_id', Auth::id())
+                ->where('p.rapat_yayasan_id', $rapatYayasan->id)
                 ->first();
 
             if ($rapatYayasan->kode !== $kode) {

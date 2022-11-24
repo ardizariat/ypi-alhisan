@@ -15,16 +15,10 @@ return new class extends Migration
     {
         Schema::create('pengurus_yayasan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->string('foto')->nullable();
             $table->string('status')->default('aktif');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')
-                ->on('users')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
         });
     }
 

@@ -55,17 +55,6 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>Email</label>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <div class="position-relative">
-                                                            <input value="{{ $data['data']->email }}" name="email"
-                                                                autocomplete="off" type="email" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
                                                     <label>Foto</label>
                                                 </div>
                                                 <div class="col-md-8">

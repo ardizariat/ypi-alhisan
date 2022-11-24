@@ -43,10 +43,9 @@ class PengurusYayasanRepository implements PengurusYayasanInterface
     public function pengurusYayasanDetail($pengurusYayasanId)
     {
         return DB::table('struktur_organisasi as so')
-            ->selectRaw('py.id, py.nama, u.email, b.nama as bagian, b.id as bagian_id, py.foto')
+            ->selectRaw('py.id, py.nama, b.nama as bagian, b.id as bagian_id, py.foto')
             ->join('pengurus_yayasan as py', 'so.pengurus_yayasan_id', '=', 'py.id')
             ->join('bagian as b', 'b.id', '=', 'so.bagian_id')
-            ->join('users as u', 'u.id', '=', 'py.user_id')
             ->where('so.pengurus_yayasan_id', $pengurusYayasanId)
             ->where('py.id', $pengurusYayasanId)
             ->first();
@@ -67,15 +66,8 @@ class PengurusYayasanRepository implements PengurusYayasanInterface
     {
         try {
             DB::beginTransaction();
-            $user = new User();
-            $user->name = $request->nama;
-            $user->username = Str::snake($request->nama);
-            $user->email = $request->email;
-            $user->password = bcrypt($this->defaultPassword);
-            $user->save();
 
             $pengurusYayasan = new PengurusYayasan();
-            $pengurusYayasan->user_id = $user->id;
             $pengurusYayasan->nama = $request->nama;
             if ($request->hasFile('foto')) {
                 $filename = uploadFile($request->file('foto'), 'pengurusYayasan/');
@@ -115,13 +107,6 @@ class PengurusYayasanRepository implements PengurusYayasanInterface
             DB::beginTransaction();
 
             $strukturOrganisasi = StrukturOrganisasi::where('pengurus_yayasan_id', $pengurusYayasan->id)->first();
-            $user = User::find($pengurusYayasan->user_id);
-
-            $user->name = $request->nama;
-            $user->username = Str::snake($request->nama);
-            $user->email = $request->email;
-            $user->password = bcrypt($this->defaultPassword);
-            $user->update();
 
             $pengurusYayasan = PengurusYayasan::find($strukturOrganisasi->pengurus_yayasan_id);
             $pengurusYayasan->nama = $request->nama;

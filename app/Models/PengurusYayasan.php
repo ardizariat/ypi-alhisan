@@ -11,7 +11,6 @@ class PengurusYayasan extends Model
 
     protected $table = 'pengurus_yayasan',
         $fillable = [
-            'user_id',
             'nama',
             'foto',
             'status',

@@ -81,7 +81,6 @@ class PengurusYayasanSeeder extends Seeder
 
             $pengurusYayasan = DB::table('pengurus_yayasan')->insertGetId([
                 'nama' => $userNew->name,
-                'user_id' => $userId,
                 'status' => 'aktif',
                 'created_at' => now()->toDateTimeString(),
                 'updated_at' => now()->toDateTimeString()
